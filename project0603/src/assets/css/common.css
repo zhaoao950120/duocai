@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+a{
+    text-decoration: none
+}
+.w1200{
+    width: 1200px;
+    margin: auto
+}
+.fl{
+    float: left;
+}
+.fr{
+    float: right
+}
+.clear{clear:both}
