@@ -12,15 +12,44 @@
     <ul>
       <li>
         <img src="../../assets/image/blank.png" alt>
-        <p>浦发银行我系列男性主题卡,新用户首刷返刷卡金</p>
+        <p>浦发银行我系列男性主题卡</p>
+        <p>新用户首刷返刷卡金</p>
       </li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
+      <li>
+        <img src="../../assets/image/blank.png" alt>
+        <p>浦发银行我系列男性主题卡</p>
+        <p>新用户首刷返刷卡金</p>
+      </li>
+      <li>
+        <img src="../../assets/image/blank.png" alt>
+        <p>浦发银行我系列男性主题卡</p>
+        <p>新用户首刷返刷卡金</p>
+      </li>
+      <li>
+        <img src="../../assets/image/blank.png" alt>
+        <p>浦发银行我系列男性主题卡</p>
+        <p>新用户首刷返刷卡金</p>
+      </li>
+      <li>
+        <img src="../../assets/image/blank.png" alt>
+        <p>浦发银行我系列男性主题卡</p>
+        <p>新用户首刷返刷卡金</p>
+      </li>
+      <li>
+        <img src="../../assets/image/blank.png" alt>
+        <p>浦发银行我系列男性主题卡</p>
+        <p>新用户首刷返刷卡金</p>
+      </li>
+      <li>
+        <img src="../../assets/image/blank.png" alt>
+        <p>浦发银行我系列男性主题卡</p>
+        <p>新用户首刷返刷卡金</p>
+      </li>
+      <li>
+        <img src="../../assets/image/blank.png" alt>
+        <p>浦发银行我系列男性主题卡</p>
+        <p>新用户首刷返刷卡金</p>
+      </li>
     </ul>
   </div>
 </template>
@@ -91,11 +120,24 @@
 /*  */
 .box ul {
   height: 406px;
+  padding: 24px 0 0 38px;
+  box-sizing: border-box;
+  overflow: hidden;
   /* display: flex; */
 }
 .box ul li {
-  width: 298px;
-  height: 200px;
+  width: 230px;
+  /* height: 180px; */
+  text-align: center;
+  float: left;
+  font-size: 14px;
+  font-family: MicrosoftYaHei;
+  font-weight: 400;
+  color: rgba(51, 51, 51, 1);
+  line-height: 25px;
+}
+.box ul li p:nth-child(3) {
+  color: rgba(128, 128, 128, 1);
 }
 </style>
 

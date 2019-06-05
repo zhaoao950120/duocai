@@ -257,12 +257,10 @@ export default {};
 .box .left {
   width: 204px;
   height: 400px;
-  background: linear-gradient(
-    0deg,
-    rgba(129, 159, 255, 1) 0%,
-    rgba(125, 90, 255, 1) 100%
-  );
+  background-color: rgba(125, 90, 255, 1);
   overflow: hidden;
+  background: url(../../assets/image/icon_dt1.png) no-repeat 0 120px
+    rgba(125, 90, 255, 1);
 }
 .box .left h2 {
   width: 119px;
