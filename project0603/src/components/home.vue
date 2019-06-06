@@ -2,7 +2,7 @@
   <div class="box">
     <top></top>
     <banner></banner>
-    <!-- <mine></mine> -->
+    <mine></mine>
     <mine-dk></mine-dk>
     <mine-xyk></mine-xyk>
     <p2p></p2p>

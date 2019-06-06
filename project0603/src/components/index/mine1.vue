@@ -8,7 +8,14 @@
           <p>广告语</p>
         </div>
         <ul>
-          <li>
+          <li v-for="(item,index) in list" :key="index">
+            <img src="../../assets/image/pingan.png" alt>
+            <p>{{item.title}}</p>
+            <p>{{item.info}}</p>
+            <p>股市直播免费看</p>
+            <button>我要开户</button>
+          </li>
+          <!-- <li>
             <img src="../../assets/image/pingan.png" alt>
             <p>万2.5佣金</p>
             <p>公募基金全线1折</p>
@@ -21,14 +28,7 @@
             <p>公募基金全线1折</p>
             <p>股市直播免费看</p>
             <button>我要开户</button>
-          </li>
-          <li>
-            <img src="../../assets/image/pingan.png" alt>
-            <p>万2.5佣金</p>
-            <p>公募基金全线1折</p>
-            <p>股市直播免费看</p>
-            <button>我要开户</button>
-          </li>
+          </li>-->
           <div class="clear"></div>
           <div class="left"></div>
           <div class="right"></div>
@@ -71,7 +71,42 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      list: []
+    };
+  },
+  mounted() {
+    // 传统写法
+    // this.$http
+    //   .get(
+    //     "https://www.baidu.com/sugrec?pre=1&p=3&ie=utf-8&json=1&prod=pc&from=pc_web&sugsid=1431,28939,21099,29135,28519,29098,29134,28838,28585,26350,29072&wd=%20&req=2&csor=1&pwd=%20&cb=jQuery110208164778836201727_1559640043595&_=1559640043599"
+    //   )
+    //   .then(
+    //     function(response) {
+    //       // 响应成功回调
+    //       console.log("成功");
+    //     },
+    //     function(response) {
+    //       // 响应错误回调
+    //       console.log("失败");
+    //     }
+    //   );
+    this.$http
+      .get("http://www.dc.com/", {
+        params: {
+          // second_category_name: "文学"
+        }
+      })
+      .then(res => {
+        this.list = res.data.data.gupiao;
+        console.log(res.data.data.gupiao);
+      });
+  },
+
+  methods: {}
+};
 </script>
 <style scoped>
 .box {

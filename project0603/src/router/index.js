@@ -4,7 +4,7 @@ import Router from 'vue-router'
 import home from "@/components/home"
 import equities from "@/components/equities"
 import loans from "@/components/loans"
-
+import loansDetail from "@/components/loansDetail"
 
 
 Vue.use(Router)
@@ -25,6 +25,11 @@ export default new Router({
       path: '/loans',
       name: 'loans',
       component: loans
-    }
+    },
+    {
+      path: '/loansDetail',
+      name: 'loansDetail',
+      component: loansDetail
+    },
   ]
 })

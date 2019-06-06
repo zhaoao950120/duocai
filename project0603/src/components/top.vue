@@ -3,9 +3,9 @@
     <div class="w1200">
       <h1 class="fl">中亿·多财</h1>
       <ul class="fr">
-        <li>首页</li>
-        <li>股票</li>
-        <li>期货</li>
+        <li @click="shouye">首页</li>
+        <li @click="gupiao">股票</li>
+        <li @click="qihuo">期货</li>
         <li>贷款</li>
         <li>信用卡</li>
         <li>P2P</li>
@@ -15,7 +15,28 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      msg: ""
+    };
+  },
+  mounted() {},
+  methods: {
+    shouye() {
+      this.$router.push({ name: "home" });
+    },
+    gupiao() {
+      this.$router.push({ name: "equities" });
+    },
+    qihuo() {
+      this.$router.push({ name: "loans" });
+    }
+    // daikuan() {
+    //   this.$router.push({ name: "loans" });
+    // }
+  }
+};
 </script>
 <style scoped>
 * {
@@ -63,10 +84,16 @@ h1 {
   line-height: 56px;
 }
 
-.header ul li:nth-child(1) {
+/* .header ul li:nth-child(1) {
   background-color: #275dcd;
   color: #fff;
   border-radius: 5px 5px 0px 0px;
+} */
+.header ul li:hover {
+  background-color: #275dcd;
+  color: #fff;
+  border-radius: 5px 5px 0px 0px;
+  cursor: pointer;
 }
 </style>
 

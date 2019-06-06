@@ -1,90 +1,87 @@
 <template>
   <div class="box">
     <div class="w1200">
-      <div class="left fl">
-        <ul>
-          <li>
-            <i></i>
-            <p>股票</p>
-          </li>
-          <li>
-            <i></i>
-            <p>贷款</p>
-          </li>
-          <li>
-            <i></i>
-            <p>P2P</p>
-          </li>
-        </ul>
-      </div>
-      <div class="moddie fl">
-        <!-- <h2>筛选条件</h2>
-      <div>
-        <ul>
-          <li>上证A股</li>
-          <li>深证股</li>
-        </ul>
-        </div>-->
-      </div>
-      <div class="right fl">
+      <!-- <div class="right">
         <img src alt>
+      </div>-->
+      <!-- <el-carousel :interval="3000" arrow="always">
+        <el-carousel-item v-for="item in 4" :key="item">
+          <h3>{{ item }}</h3>
+        </el-carousel-item>
+      </el-carousel>-->
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" v-for="(item,i) in list" :key="i">
+            <img src="../../assets/image/banner2.png" alt>
+            <!-- <img src="item.imagepath" alt> -->
+            <!-- <p>{{item.class_name}}</p> -->
+          </div>
+          <div class="swiper-slide">
+            <img src="../../assets/image/banner1.png" alt>
+          </div>
+          <div class="swiper-slide">
+            <img src="../../assets/image/banner2.png" alt>
+          </div>
+        </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination"></div>
+
+        <!-- 如果需要导航按钮 -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
       </div>
-      <div class="clear"></div>
     </div>
   </div>
 </template>
 <script>
 // import axios from "axios";
+import Swiper from "swiper";
+import "swiper/dist/css/swiper.css";
 export default {
   data() {
-    return {};
+    return {
+      msg: "Welcome to Your Vue.js App",
+      list: []
+    };
   },
   mounted() {
-    // var url = "https://www.dc.com/";
-    // var params = {};
-    // axios({
-    //   method: "get",
-    //   url: url,
-    //   data: params
-    // })
-    //   .then(res => {
-    //     console.log("成功");
-    //   })
-    //   .catch(err => {
-    //     console.log("失败");
-    //   });
+    new Swiper(".swiper-container", {
+      // autoplay: true, //可选选项，自动滑动
+      autoplay: {
+        delay: 1000, //1秒切换一次
+        disableOnInteraction: false,
+        speed: 100,
+        loop: true
+      },
 
-    // this.$ajax
-    //   .get("https://www.dc.com/", {
-    //     params: {}
-    //   })
-    //   .then(res => {
-    //     console.log(res.data);
-    //   });
-    // 传统写法
-    // this.$http
-    //   .get(
-    //     "https://www.baidu.com/sugrec?pre=1&p=3&ie=utf-8&json=1&prod=pc&from=pc_web&sugsid=1431,28939,21099,29135,28519,29098,29134,28838,28585,26350,29072&wd=%20&req=2&csor=1&pwd=%20&cb=jQuery110208164778836201727_1559640043595&_=1559640043599"
-    //   )
-    //   .then(
-    //     function(response) {
-    //       // 响应成功回调
-    //       console.log("成功");
-    //     },
-    //     function(response) {
-    //       // 响应错误回调
-    //       console.log("失败");
-    //     }
-    //   );
+      // 如果需要分页器
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true
+      },
+      // 如果需要前进后退按钮
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev"
+      }
+
+      // nextButton: ".swiper-button-next",
+      // prevButton: ".swiper-button-prev",
+      // // 如果需要滚动条
+      // scrollbar: ".swiper-scrollbar",
+      // initialSlide: 1
+      // virtualTranslate: true
+    });
+
     this.$http
-      .get("http://www.dc.com/", {
+      .get("http://www.dc.com/api/getBanner?swiper=1&class=1", {
         params: {
           // second_category_name: "文学"
         }
       })
       .then(res => {
-        this.list = res.data.result;
-        console.log(res.data);
+        this.list = res.data.data;
+        console.log(res.data.data[0]);
       });
   },
 
@@ -143,11 +140,20 @@ export default {
   border-radius: 6px;
 }
 .right {
-  width: 711px;
+  width: 1200px;
   height: 292px;
   background: rgba(255, 255, 255, 1);
   border-radius: 6px;
-  margin-left: 5px;
+  /* margin-left: 5px; */
+}
+
+.swiper-container {
+  width: 1200px;
+  height: 292px;
+  /* margin: 20px auto; */
+}
+img {
+  width: 100%;
 }
 </style>
 
