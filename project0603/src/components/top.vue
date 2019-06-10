@@ -5,8 +5,8 @@
       <ul class="fr">
         <li @click="shouye">首页</li>
         <li @click="gupiao">股票</li>
-        <li @click="qihuo">期货</li>
-        <li>贷款</li>
+        <li>期货</li>
+        <li @click="qihuo">贷款</li>
         <li>信用卡</li>
         <li>P2P</li>
       </ul>

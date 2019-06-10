@@ -51,6 +51,7 @@
         <p>新用户首刷返刷卡金</p>
       </li>
     </ul>
+    <img src="../../assets/image/icon_11.png" alt>
   </div>
 </template>
 <style scoped>
@@ -61,21 +62,29 @@
   background: rgba(255, 255, 255, 1);
   box-shadow: 0px 0px 21px 0px rgba(0, 0, 0, 0.08);
   margin-top: 50px;
+  position: relative;
 }
 .box .left {
   width: 204px;
   height: 400px;
-  background: linear-gradient(
+  /* background: linear-gradient(
     0deg,
     rgba(129, 159, 255, 1) 0%,
     rgba(125, 90, 255, 1) 100%
+  ); */
+  background: linear-gradient(
+    0deg,
+    rgba(122, 191, 255, 1) 0%,
+    rgba(58, 164, 254, 1) 100%
   );
   overflow: hidden;
+  transform: translateY(-12px);
 }
 .box .left h2 {
   width: 119px;
   height: 52px;
-  background: #9882ff;
+  background: #65b8fe;
+  text-align: center;
   /* opacity: 0.2; */
   line-height: 52px;
   color: #fff;
@@ -93,6 +102,7 @@
   line-height: 27px;
   border: none;
   border: 1px solid rgba(255, 255, 255, 1);
+  cursor: pointer;
 }
 .box .left .btn1 {
   margin: 39px 0 0 93px;
@@ -138,6 +148,11 @@
 }
 .box ul li p:nth-child(3) {
   color: rgba(128, 128, 128, 1);
+}
+.box > img {
+  position: absolute;
+  top: -12px;
+  left: 204px;
 }
 </style>
 

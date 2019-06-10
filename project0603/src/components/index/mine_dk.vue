@@ -207,23 +207,23 @@
       <form action>
         <div class="name">
           <label for>您的姓名</label>
-          <input type="text" placeholder="您的姓名" class="input">
+          <input type="text" placeholder="请输入您的姓名" class="input">
         </div>
         <div class="name">
           <label for>联系方式</label>
-          <input type="text" placeholder="您的姓名" class="input">
+          <input type="text" placeholder="请输入手机号" class="input">
         </div>
         <div class="name">
           <label for>贷款金额</label>
-          <input type="text" placeholder="您的姓名" class="input">
+          <input type="text" placeholder="请输入贷款金额" class="input">
         </div>
         <div class="name">
           <label for>资产状况</label>
-          <input type="text" placeholder="您的姓名" class="input">
+          <input type="text" placeholder="资产状况" class="input">
         </div>
         <div class="name">
           <label for>婚姻状况</label>
-          <input type="text" placeholder="您的姓名" class="input">
+          <input type placeholder="婚姻状况" class="input">
         </div>
         <!-- <div class="radio">
           <input type="radio" value="先生">
@@ -237,6 +237,7 @@
       </form>
     </div>
     <div class="clear"></div>
+    <img src="../../assets/image/icon_10.png" alt>
   </div>
 </template>
 <script>
@@ -253,19 +254,22 @@ export default {};
   background: rgba(255, 255, 255, 1);
   box-shadow: 0px 0px 21px 0px rgba(0, 0, 0, 0.08);
   margin-top: 50px;
+  position: relative;
 }
 .box .left {
   width: 204px;
-  height: 400px;
+  height: 412px;
   background-color: rgba(125, 90, 255, 1);
   overflow: hidden;
   background: url(../../assets/image/icon_dt1.png) no-repeat 0 120px
     rgba(125, 90, 255, 1);
+  transform: translateY(-12px);
 }
 .box .left h2 {
   width: 119px;
   height: 52px;
   background: #9882ff;
+  text-align: center;
   /* opacity: 0.2; */
   line-height: 52px;
   color: #fff;
@@ -283,6 +287,7 @@ export default {};
   line-height: 27px;
   border: none;
   border: 1px solid rgba(255, 255, 255, 1);
+  cursor: pointer;
 }
 .box .left .btn1 {
   margin: 39px 0 0 93px;
@@ -312,6 +317,12 @@ export default {};
   padding: 35px 0 0 30px;
   box-sizing: border-box;
   height: 400px;
+}
+.box .middle .p2 {
+  font-size: 14px;
+}
+.box .middle .p3 {
+  color: rgba(179, 179, 179, 1);
 }
 .box .middle ul li {
   margin-bottom: 20px;
@@ -349,6 +360,7 @@ export default {};
   border-radius: 6px;
   background-color: #fff;
   padding: 0 10px;
+  color: rgba(179, 179, 179, 1);
 }
 .form {
   width: 260px;
@@ -370,6 +382,8 @@ export default {};
   border: 1px solid rgba(230, 230, 230, 1);
   border-radius: 6px;
   margin: 8px 0;
+  padding-left: 10px;
+  box-sizing: border-box;
 }
 .form .radio label {
   font-size: 14px;
@@ -391,6 +405,12 @@ export default {};
   border-radius: 20px;
   margin-left: 15px;
   border: none;
+  color: #fff;
+}
+.box > img {
+  position: absolute;
+  top: -12px;
+  left: 204px;
 }
 </style>
 

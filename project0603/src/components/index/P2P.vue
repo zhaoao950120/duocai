@@ -77,6 +77,7 @@
       </li>
     </ul>
     <div class="clear"></div>
+    <img src="../../assets/image/icon_12.png" alt>
   </div>
 </template>
 <style scoped>
@@ -87,21 +88,24 @@
   background: rgba(255, 255, 255, 1);
   box-shadow: 0px 0px 21px 0px rgba(0, 0, 0, 0.08);
   margin-top: 50px;
+  position: relative;
 }
 .box .left {
   width: 204px;
   height: 320px;
   background: linear-gradient(
     0deg,
-    rgba(129, 159, 255, 1) 0%,
-    rgba(125, 90, 255, 1) 100%
+    rgba(255, 195, 118, 1) 0%,
+    rgba(255, 108, 88, 1) 100%
   );
   overflow: hidden;
+  transform: translateY(-12px);
 }
 .box .left h2 {
   width: 119px;
   height: 52px;
-  background: #9882ff;
+  background: #ff8f7b;
+  text-align: center;
   /* opacity: 0.2; */
   line-height: 52px;
   color: #fff;
@@ -119,6 +123,7 @@
   line-height: 27px;
   border: none;
   border: 1px solid rgba(255, 255, 255, 1);
+  cursor: pointer;
 }
 .box .left .btn1 {
   margin: 39px 0 0 93px;
@@ -230,6 +235,11 @@
   height: 320px;
   float: left;
   box-sizing: border-box;
+}
+.box > img {
+  position: absolute;
+  top: -12px;
+  left: 204px;
 }
 </style>
 

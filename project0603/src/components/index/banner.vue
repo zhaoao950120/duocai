@@ -11,16 +11,14 @@
       </el-carousel>-->
       <div class="swiper-container">
         <div class="swiper-wrapper">
-          <div class="swiper-slide" v-for="(item,i) in list" :key="i">
-            <img src="../../assets/image/banner2.png" alt>
-            <!-- <img src="item.imagepath" alt> -->
-            <!-- <p>{{item.class_name}}</p> -->
+          <div class="swiper-slide">
+            <img src="//www.dc.com/static/upload/banner/2.PNG" alt>
           </div>
           <div class="swiper-slide">
-            <img src="../../assets/image/banner1.png" alt>
+            <img src="//www.dc.com/static/upload/banner/3.PNG" alt>
           </div>
           <div class="swiper-slide">
-            <img src="../../assets/image/banner2.png" alt>
+            <img src="//www.dc.com/static/upload/banner/1.PNG" alt>
           </div>
         </div>
         <!-- 如果需要分页器 -->
@@ -44,11 +42,23 @@ export default {
       list: []
     };
   },
+  created() {
+    this.$http
+      .get("https://www.dc.com/api/getBanner?swiper=3&class_id=1", {
+        params: {
+          // second_category_name: "文学"
+        }
+      })
+      .then(res => {
+        this.list = res.data.data;
+        console.log(res.data.data);
+      });
+  },
   mounted() {
     new Swiper(".swiper-container", {
       // autoplay: true, //可选选项，自动滑动
       autoplay: {
-        delay: 1000, //1秒切换一次
+        delay: 2000, //1秒切换一次
         disableOnInteraction: false,
         speed: 100,
         loop: true
@@ -72,17 +82,6 @@ export default {
       // initialSlide: 1
       // virtualTranslate: true
     });
-
-    this.$http
-      .get("http://www.dc.com/api/getBanner?swiper=1&class=1", {
-        params: {
-          // second_category_name: "文学"
-        }
-      })
-      .then(res => {
-        this.list = res.data.data;
-        console.log(res.data.data[0]);
-      });
   },
 
   methods: {}

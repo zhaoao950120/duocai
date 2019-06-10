@@ -41,10 +41,10 @@
           <p>广告语</p>
         </div>
         <ul>
-          <li>
+          <li v-for="(item,index) in list1" :key="index">
             <img src="../../assets/image/qihuo.png" alt>
-            <p>万2.5佣金</p>
-            <p>公募基金全线1折</p>
+            <p>{{item.title}}</p>
+            <p>{{item.add_date}}</p>
             <p>股市直播免费看</p>
             <button>我要开户</button>
           </li>
@@ -55,13 +55,13 @@
             <p>股市直播免费看</p>
             <button>我要开户</button>
           </li>
-          <li>
+          <!-- <li>
             <img src="../../assets/image/qihuo.png" alt>
             <p>万2.5佣金</p>
             <p>公募基金全线1折</p>
             <p>股市直播免费看</p>
             <button>我要开户</button>
-          </li>
+          </li>-->
           <div class="clear"></div>
           <div class="left"></div>
           <div class="right"></div>
@@ -74,7 +74,8 @@
 export default {
   data() {
     return {
-      list: []
+      list: [],
+      list1: []
     };
   },
   mounted() {
@@ -101,6 +102,7 @@ export default {
       })
       .then(res => {
         this.list = res.data.data.gupiao;
+        this.list1 = res.data.data.qihuo;
         console.log(res.data.data.gupiao);
       });
   },

@@ -1,6 +1,7 @@
 <template>
   <div class="box">
     <div class="header"></div>
+    <!-- 列表 -->
     <div class="content w1200">
       <ul class="list fl">
         <li>
@@ -24,8 +25,9 @@
             </div>
           </div>
           <div class="btn fl">
-            <button>立即借款</button>
+            <el-button type="text" @click="dialogFormVisible = true">立即借款</el-button>
           </div>
+
           <div class="clear"></div>
         </li>
         <li>
@@ -212,11 +214,67 @@
         <input type="text" placeholder="请输入您的联系方式">
         <input type="text" placeholder="资产状况">
         <input type="text" placeholder="婚姻状况">
-        <button>立即借款</button>
+        <el-button @click="dialogFormVisible1 = true">立即借款</el-button>
       </form>
       <div class="clear"></div>
     </div>
-    <bottom></bottom>
+    <!-- 弹框1 -->
+    <!-- Form1 -->
+    <el-dialog
+      title="快速贷款"
+      :visible.sync="dialogFormVisible"
+      width="20%"
+      top="7vh"
+      center="center"
+      class="dialog"
+    >
+      <input type="text" v-model="money" placeholder="贷款金额（万元）">
+      <input type="text" v-model="username" placeholder="您的姓名">
+      <input type="text" v-model="usertel" placeholder="请输入您的联系方式">
+      <input type="text" v-model="asset" placeholder="资产状况">
+      <input type="text" v-model="marital" placeholder="婚姻状况">
+      <!-- </el-form> -->
+      <div slot="footer" class="dialog-footer">
+        <!-- <button>立即借款</button> -->
+        <el-button @click="dialogFormVisible1 = true">立即借款</el-button>
+        <!-- <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>-->
+      </div>
+    </el-dialog>
+
+    <!-- 弹框二维码 -->
+    <!-- Form二维码 -->
+    <el-dialog
+      title="快速贷款"
+      :visible.sync="dialogFormVisible1"
+      width="20%"
+      top="55vh"
+      center="center"
+      class="dialog"
+    >
+      <p>
+        <i class="el-icon-success" style="color:green"></i>恭喜您，您提交的贷款资料 已初审通过！
+      </p>
+      <!-- </el-form> -->
+      <div slot="footer" class="dialog-footer">
+        <p>二维码</p>
+        <img src alt>
+        <!-- <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>-->
+      </div>
+    </el-dialog>
+    <!-- <div class="dialog" v-show="dialog">
+      <form action class="fl">
+        <h3>快速贷款</h3>
+        <input type="text" placeholder="贷款金额（万元）">
+        <input type="text" placeholder="您的姓名">
+        <input type="text" placeholder="请输入您的联系方式">
+        <input type="text" placeholder="资产状况">
+        <input type="text" placeholder="婚姻状况">
+        <button>立即借款</button>
+      </form>
+    </div>
+    <div class="zhezhao"></div>-->
   </div>
 </template>
 <script>
@@ -225,10 +283,43 @@ import bottom from "@/components/bottom";
 export default {
   components: {
     bottom
+  },
+  data() {
+    return {
+      list: [],
+      dialogFormVisible: false,
+      dialogFormVisible1: false,
+      form: {
+        name: "",
+        region: "",
+        date1: "",
+        date2: "",
+        delivery: false,
+        type: [],
+        resource: "",
+        desc: "",
+        center: "true"
+      },
+      formLabelWidth: "120px",
+      money: "",
+      username: "",
+      usertel: "",
+      asset: "",
+      marital: ""
+    };
+  },
+  mounted() {},
+  methods: {
+    jiekuan() {
+      this.dialog = true;
+    }
   }
 };
 </script>
 <style scoped>
+.box {
+  position: relative;
+}
 .box .header {
   width: 100%;
   height: 759px;
@@ -328,6 +419,31 @@ export default {
   box-sizing: border-box;
 }
 .box .content form button {
+  width: 161px;
+  height: 40px;
+  background: rgba(243, 84, 84, 1);
+  border-radius: 20px;
+  color: rgba(255, 255, 255, 1);
+  border: none;
+}
+/* 弹框 */
+.dialog {
+  text-align: center;
+}
+.dialog input {
+  width: 241px;
+  height: 39px;
+  background: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(230, 230, 230, 1);
+  border-radius: 6px;
+  margin-bottom: 15px;
+  padding-left: 12px;
+  box-sizing: border-box;
+}
+.dialog input:last-child {
+  margin-bottom: 0;
+}
+.dialog button {
   width: 161px;
   height: 40px;
   background: rgba(243, 84, 84, 1);
