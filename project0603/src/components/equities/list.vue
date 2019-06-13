@@ -16,13 +16,23 @@
           <div class="bottom">
             <div class="left fl">
               <ul>
-                <li>
+                <li class="fl">
                   <div></div>
-                  <p></p>
+                  <p>XXXXXXXX</p>
                 </li>
-                <li></li>
-                <li></li>
-                <li></li>
+                <li class="fl">
+                  <div></div>
+                  <p>XXXXXXXX</p>
+                </li>
+                <li class="fl">
+                  <div></div>
+                  <p>XXXXXXXX</p>
+                </li>
+                <li class="fl">
+                  <div></div>
+                  <p>XXXXXXXX</p>
+                </li>
+                <div class="clear"></div>
               </ul>
             </div>
             <div class="right fl">
@@ -46,13 +56,23 @@
           <div class="bottom">
             <div class="left fl">
               <ul>
-                <li>
+                <li class="fl">
                   <div></div>
-                  <p></p>
+                  <p>XXXXXXXX</p>
                 </li>
-                <li></li>
-                <li></li>
-                <li></li>
+                <li class="fl">
+                  <div></div>
+                  <p>XXXXXXXX</p>
+                </li>
+                <li class="fl">
+                  <div></div>
+                  <p>XXXXXXXX</p>
+                </li>
+                <li class="fl">
+                  <div></div>
+                  <p>XXXXXXXX</p>
+                </li>
+                <div class="clear"></div>
               </ul>
             </div>
             <div class="right fl">
@@ -76,13 +96,23 @@
           <div class="bottom">
             <div class="left fl">
               <ul>
-                <li>
+                <li class="fl">
                   <div></div>
-                  <p></p>
+                  <p>XXXXXXXX</p>
                 </li>
-                <li></li>
-                <li></li>
-                <li></li>
+                <li class="fl">
+                  <div></div>
+                  <p>XXXXXXXX</p>
+                </li>
+                <li class="fl">
+                  <div></div>
+                  <p>XXXXXXXX</p>
+                </li>
+                <li class="fl">
+                  <div></div>
+                  <p>XXXXXXXX</p>
+                </li>
+                <div class="clear"></div>
               </ul>
             </div>
             <div class="right fl">
@@ -106,13 +136,23 @@
           <div class="bottom">
             <div class="left fl">
               <ul>
-                <li>
+                <li class="fl">
                   <div></div>
-                  <p></p>
+                  <p>XXXXXXXX</p>
                 </li>
-                <li></li>
-                <li></li>
-                <li></li>
+                <li class="fl">
+                  <div></div>
+                  <p>XXXXXXXX</p>
+                </li>
+                <li class="fl">
+                  <div></div>
+                  <p>XXXXXXXX</p>
+                </li>
+                <li class="fl">
+                  <div></div>
+                  <p>XXXXXXXX</p>
+                </li>
+                <div class="clear"></div>
               </ul>
             </div>
             <div class="right fl">
@@ -197,13 +237,17 @@ export default {};
   padding-top: 20px;
 }
 .box .list > li > .bottom > .left {
-  width: 215px;
-  height: 215px;
+  width: 50%;
+  /* height: 215px; */
 }
 .box .list > li > .bottom > .right {
   /* width: 199px;
-  height: 199px;
-  box-shadow: 0px 0px 21px 0px rgba(0, 0, 0, 0.16); */
+  height: 199px; */
+  /* box-shadow: 0px 0px 21px 0px rgba(0, 0, 0, 0.16); */
+  margin: 20px 0 0 20px;
+}
+.box .list > li > .bottom > .right > img {
+  box-shadow: 0px 0px 21px 0px rgba(0, 0, 0, 0.16);
 }
 .box .list > li > .bottom > .right img {
   width: 199px;
@@ -217,6 +261,16 @@ export default {};
   color: rgba(51, 51, 51, 1);
   text-align: center;
   line-height: 35px;
+}
+/*  */
+.list li .bottom ul li {
+  margin: 10px;
+}
+.list li .bottom ul li > div {
+  width: 90px;
+  height: 90px;
+  background: rgba(243, 84, 84, 1);
+  border-radius: 10px;
 }
 </style>
 

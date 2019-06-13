@@ -28,6 +28,13 @@
             <p>公募基金全线1折</p>
             <p>股市直播免费看</p>
             <button>我要开户</button>
+          </li>
+          <li>
+            <img src="../../assets/image/pingan.png" alt>
+            <p>万2.5佣金</p>
+            <p>公募基金全线1折</p>
+            <p>股市直播免费看</p>
+            <button>我要开户</button>
           </li>-->
           <div class="clear"></div>
           <div class="left"></div>
@@ -103,7 +110,7 @@ export default {
       .then(res => {
         this.list = res.data.data.gupiao;
         this.list1 = res.data.data.qihuo;
-        console.log(res.data.data.gupiao);
+        // console.log(res.data.data.gupiao);
       });
   },
 

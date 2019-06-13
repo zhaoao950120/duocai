@@ -209,22 +209,21 @@
       <!-- 表单 -->
       <form action class="fl">
         <h3>快速贷款</h3>
-        <input type="text" placeholder="贷款金额（万元）">
-        <input type="text" placeholder="您的姓名">
-        <input type="text" placeholder="请输入您的联系方式">
-        <input type="text" placeholder="资产状况">
-        <input type="text" placeholder="婚姻状况">
-        <el-button @click="dialogFormVisible1 = true">立即借款</el-button>
+        <input type="text" placeholder="贷款金额（万元）" v-model="money1">
+        <input type="text" placeholder="您的姓名" v-model="username1">
+        <input type="text" placeholder="请输入您的联系方式" v-model="usertel1">
+        <input type="text" placeholder="资产状况" v-model="asset1">
+        <input type="text" placeholder="婚姻状况" v-model="marital1">
+        <el-button @click="jiekuan">立即借款</el-button>
       </form>
       <div class="clear"></div>
     </div>
-    <!-- 弹框1 -->
-    <!-- Form1 -->
+    <!-- 借款弹框1 -->
     <el-dialog
       title="快速贷款"
       :visible.sync="dialogFormVisible"
-      width="20%"
-      top="7vh"
+      width="16%"
+      top="15vh"
       center="center"
       class="dialog"
     >
@@ -234,21 +233,18 @@
       <input type="text" v-model="asset" placeholder="资产状况">
       <input type="text" v-model="marital" placeholder="婚姻状况">
       <!-- </el-form> -->
-      <div slot="footer" class="dialog-footer">
-        <!-- <button>立即借款</button> -->
-        <el-button @click="dialogFormVisible1 = true">立即借款</el-button>
-        <!-- <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>-->
-      </div>
+      <!-- <button>立即借款</button> -->
+      <el-button id="btn_jk" @click="jiekuan1">立即借款</el-button>
+      <!-- <el-button @click="dialogFormVisible = false">取 消</el-button>
+      <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>-->
     </el-dialog>
 
     <!-- 弹框二维码 -->
-    <!-- Form二维码 -->
     <el-dialog
       title="快速贷款"
       :visible.sync="dialogFormVisible1"
       width="20%"
-      top="55vh"
+      top="20vh"
       center="center"
       class="dialog"
     >
@@ -258,23 +254,24 @@
       <!-- </el-form> -->
       <div slot="footer" class="dialog-footer">
         <p>二维码</p>
-        <img src alt>
-        <!-- <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>-->
+        <img class="image613" src alt>
       </div>
     </el-dialog>
-    <!-- <div class="dialog" v-show="dialog">
-      <form action class="fl">
-        <h3>快速贷款</h3>
-        <input type="text" placeholder="贷款金额（万元）">
-        <input type="text" placeholder="您的姓名">
-        <input type="text" placeholder="请输入您的联系方式">
-        <input type="text" placeholder="资产状况">
-        <input type="text" placeholder="婚姻状况">
-        <button>立即借款</button>
-      </form>
+    <bottom></bottom>
+    <!-- 客服 -->
+    <div class="livechat-girl animated">
+      <img class="girl" src="../assets/image/en_3.png">
+      <div
+        class="livechat-hint rd-notice-tooltip rd-notice-type-success rd-notice-position-left single-line show_hint"
+      >
+        <div class="rd-notice-content">嘿，我来帮您！</div>
+      </div>
+      <div class="animated-circles">
+        <div class="circle c-1"></div>
+        <div class="circle c-2"></div>
+        <div class="circle c-3"></div>
+      </div>
     </div>
-    <div class="zhezhao"></div>-->
   </div>
 </template>
 <script>
@@ -305,14 +302,80 @@ export default {
       username: "",
       usertel: "",
       asset: "",
-      marital: ""
+      marital: "",
+      money1: "",
+      username1: "",
+      usertel1: "",
+      asset1: "",
+      marital1: ""
     };
   },
   mounted() {},
   methods: {
     jiekuan() {
-      this.dialog = true;
+      this.dialogFormVisible1 = true;
+      console.log(
+        this.money1,
+        this.username1,
+        this.usertel1,
+        this.asset1,
+        this.marital1
+      );
+      // 贷款表单提交
+      $.ajax({
+        type: "POST",
+        url: "http://www.dc.com/api/cdk",
+        header: { "Content-Type": "application/x-www-form-urlencoded" },
+        data: {
+          name: this.username1,
+          tel: this.usertel1,
+          amount: this.money1,
+          dc_zc: this.asset1,
+          dc_hy: this.marital1,
+          class_id: 3
+        },
+        dataType: "json",
+        success: function(data) {
+          console.log(data);
+          $(".image613").attr(
+            "src",
+            "https://www.dc.com/static/upload/qr/timg.jpg"
+          );
+        }
+      });
+    },
+    jiekuan1() {
+      console.log(
+        this.money,
+        this.username,
+        this.usertel,
+        this.asset,
+        this.marital
+      );
+      this.dialogFormVisible = false;
+      this.dialogFormVisible1 = true;
+      // this.$http
+      //   .post("https://www.dc.com/api/getBanner?swiper=3&class_id=1", {
+      //     params: {
+      //       money: this.money,
+      //       username:this.username,
+      //       usertel:this.usertel,
+      //       asset:this.asset,
+      //       marital:this.marital
+      //     }
+      //   })
+      //   .then(res => {
+      //     this.list = res.data.data;
+      //     console.log(res.data.data);
+      //   });
     }
+    // detail() {
+    //   // alert(11);
+    //   this.$router.push({
+    //     name: "loansDetail"
+    //     // params: { goodsid: id }
+    //   });
+    // }
   }
 };
 </script>
@@ -342,6 +405,7 @@ export default {
   padding: 25px;
   box-sizing: border-box;
   position: relative;
+  cursor: pointer;
 }
 .box .content .list li img {
   margin-right: 12px;
@@ -431,7 +495,8 @@ export default {
   text-align: center;
 }
 .dialog input {
-  width: 241px;
+  width: 80%;
+  margin-left: 10%;
   height: 39px;
   background: rgba(255, 255, 255, 1);
   border: 1px solid rgba(230, 230, 230, 1);
@@ -443,13 +508,21 @@ export default {
 .dialog input:last-child {
   margin-bottom: 0;
 }
-.dialog button {
-  width: 161px;
+.dialog #btn_jk {
+  width: 60%;
   height: 40px;
   background: rgba(243, 84, 84, 1);
   border-radius: 20px;
   color: rgba(255, 255, 255, 1);
   border: none;
+  margin: auto;
+  text-align: center;
+  display: inline-block;
+  margin-left: 20%;
+}
+.image613 {
+  width: 163px;
+  height: 163px;
 }
 </style>
 

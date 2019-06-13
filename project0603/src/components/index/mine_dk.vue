@@ -11,14 +11,14 @@
     <!-- 列表 -->
     <div class="middle fl">
       <ul>
-        <li>
+        <li v-for="(item,index) in list" :key="index">
           <div class="top">
             <div class="fl">
               <img src="../../assets/image/jie.png" alt>
             </div>
             <div class="fl">
-              <p class="p1">借钱宝</p>
-              <p class="p2">没有接不来的钱，没有接不来的钱</p>
+              <p class="p1">{{item.title}}</p>
+              <p class="p2">{{item.info}}</p>
             </div>
             <div class="clear"></div>
           </div>
@@ -42,161 +42,7 @@
             <button>借贷利率低</button>
           </div>
         </li>
-        <li>
-          <div class="top">
-            <div class="fl">
-              <img src="../../assets/image/jie.png" alt>
-            </div>
-            <div class="fl">
-              <p class="p1">借钱宝</p>
-              <p class="p2">没有接不来的钱，没有接不来的钱</p>
-            </div>
-            <div class="clear"></div>
-          </div>
-          <!-- 中 -->
-          <div class="p2">
-            <p class="fl">
-              <span>额度范围：</span>
-              <span>10000-40000</span>
-            </p>
-            <p class="fl" style="margin-left:15px">
-              <span>贷款期限：</span>
-              <span>6-12月</span>
-            </p>
-            <div class="clear"></div>
-          </div>
 
-          <div class="p3">
-            <button>放款快</button>
-            <button>范围广</button>
-            <button>借款期限长</button>
-            <button>借贷利率低</button>
-          </div>
-        </li>
-        <li>
-          <div class="top">
-            <div class="fl">
-              <img src="../../assets/image/jie.png" alt>
-            </div>
-            <div class="fl">
-              <p class="p1">借钱宝</p>
-              <p class="p2">没有接不来的钱，没有接不来的钱</p>
-            </div>
-            <div class="clear"></div>
-          </div>
-          <!-- 中 -->
-          <div class="p2">
-            <p class="fl">
-              <span>额度范围：</span>
-              <span>10000-40000</span>
-            </p>
-            <p class="fl" style="margin-left:15px">
-              <span>贷款期限：</span>
-              <span>6-12月</span>
-            </p>
-            <div class="clear"></div>
-          </div>
-
-          <div class="p3">
-            <button>放款快</button>
-            <button>范围广</button>
-            <button>借款期限长</button>
-            <button>借贷利率低</button>
-          </div>
-        </li>
-        <li>
-          <div class="top">
-            <div class="fl">
-              <img src="../../assets/image/jie.png" alt>
-            </div>
-            <div class="fl">
-              <p class="p1">借钱宝</p>
-              <p class="p2">没有接不来的钱，没有接不来的钱</p>
-            </div>
-            <div class="clear"></div>
-          </div>
-          <!-- 中 -->
-          <div class="p2">
-            <p class="fl">
-              <span>额度范围：</span>
-              <span>10000-40000</span>
-            </p>
-            <p class="fl" style="margin-left:15px">
-              <span>贷款期限：</span>
-              <span>6-12月</span>
-            </p>
-            <div class="clear"></div>
-          </div>
-
-          <div class="p3">
-            <button>放款快</button>
-            <button>范围广</button>
-            <button>借款期限长</button>
-            <button>借贷利率低</button>
-          </div>
-        </li>
-        <li>
-          <div class="top">
-            <div class="fl">
-              <img src="../../assets/image/jie.png" alt>
-            </div>
-            <div class="fl">
-              <p class="p1">借钱宝</p>
-              <p class="p2">没有接不来的钱，没有接不来的钱</p>
-            </div>
-            <div class="clear"></div>
-          </div>
-          <!-- 中 -->
-          <div class="p2">
-            <p class="fl">
-              <span>额度范围：</span>
-              <span>10000-40000</span>
-            </p>
-            <p class="fl" style="margin-left:15px">
-              <span>贷款期限：</span>
-              <span>6-12月</span>
-            </p>
-            <div class="clear"></div>
-          </div>
-
-          <div class="p3">
-            <button>放款快</button>
-            <button>范围广</button>
-            <button>借款期限长</button>
-            <button>借贷利率低</button>
-          </div>
-        </li>
-        <li>
-          <div class="top">
-            <div class="fl">
-              <img src="../../assets/image/jie.png" alt>
-            </div>
-            <div class="fl">
-              <p class="p1">借钱宝</p>
-              <p class="p2">没有接不来的钱，没有接不来的钱</p>
-            </div>
-            <div class="clear"></div>
-          </div>
-          <!-- 中 -->
-          <div class="p2">
-            <p class="fl">
-              <span>额度范围：</span>
-              <span>10000-40000</span>
-            </p>
-            <p class="fl" style="margin-left:15px">
-              <span>贷款期限：</span>
-              <span>6-12月</span>
-            </p>
-            <div class="clear"></div>
-          </div>
-
-          <div class="p3">
-            <button>放款快</button>
-            <button>范围广</button>
-            <button>借款期限长</button>
-            <button>借贷利率低</button>
-          </div>
-        </li>
         <div class="clear"></div>
       </ul>
     </div>
@@ -204,46 +50,157 @@
     <!-- 表单 -->
     <div class="right fl form">
       <h2>快速申请贷款</h2>
-      <form action>
-        <div class="name">
-          <label for>您的姓名</label>
-          <input type="text" placeholder="请输入您的姓名" class="input">
-        </div>
-        <div class="name">
-          <label for>联系方式</label>
-          <input type="text" placeholder="请输入手机号" class="input">
-        </div>
-        <div class="name">
-          <label for>贷款金额</label>
-          <input type="text" placeholder="请输入贷款金额" class="input">
-        </div>
-        <div class="name">
-          <label for>资产状况</label>
-          <input type="text" placeholder="资产状况" class="input">
-        </div>
-        <div class="name">
-          <label for>婚姻状况</label>
-          <input type placeholder="婚姻状况" class="input">
-        </div>
-        <!-- <div class="radio">
-          <input type="radio" value="先生">
-          <label for>先生</label>
-          <input type="radio" value="女士">
-          <label for>女士</label>
-        </div>
-        <input type="text" placeholder="贷款金额" class="input">
-        <input type="text" placeholder="联系手机" class="input">-->
-        <button>下一步</button>
-      </form>
+      <!-- <form action="http://www.dc.com/api/cdk" method="post"> -->
+      <div class="name">
+        <label for>您的姓名</label>
+        <input type="text" placeholder="请输入您的姓名" class="input" v-model="username" name="name">
+      </div>
+      <div class="name">
+        <label for>联系方式</label>
+        <input type="text" placeholder="请输入手机号" class="input" v-model="usertel" name="amount">
+      </div>
+      <div class="name">
+        <label for>贷款金额</label>
+        <input type="text" placeholder="请输入贷款金额" class="input" v-model="money" name="amount">
+      </div>
+      <div class="name">
+        <label for>资产状况</label>
+        <input type="text" placeholder="资产状况" class="input" v-model="zichan" name="dc_zc">
+      </div>
+      <div class="name">
+        <label for>婚姻状况</label>
+        <input type placeholder="婚姻状况" class="input" v-model="hunyin" name="dc_hy">
+      </div>
+      <!-- <input type="submit" value="确定"> -->
+      <button @click="submit">下一步</button>
+      <!-- </form> -->
     </div>
     <div class="clear"></div>
     <img src="../../assets/image/icon_10.png" alt>
+    <!-- 弹框二维码 -->
+    <el-dialog
+      title="快速贷款"
+      :visible.sync="dialogFormVisible1"
+      width="20%"
+      top="20vh"
+      center="center"
+      class="dialog"
+    >
+      <p>
+        <i class="el-icon-success" style="color:green"></i>恭喜您，您提交的贷款资料 已初审通过！
+      </p>
+      <!-- </el-form> -->
+      <div slot="footer" class="dialog-footer">
+        <!-- <p>二维码</p> -->
+        <img class="image613" src alt>
+        <!-- <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>-->
+      </div>
+    </el-dialog>
   </div>
 </template>
 <script>
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "bootstrap/dist/js/bootstrap.min.js";
-export default {};
+export default {
+  data() {
+    return {
+      username: "",
+      usertel: "",
+      money: "",
+      zichan: "",
+      hunyin: "",
+      dialogFormVisible1: false,
+      list: []
+    };
+  },
+  created() {
+    // 贷款数据
+    this.$http.get("http://www.dc.com/").then(res => {
+      this.list = res.data.data.jinxuandaikuan;
+      console.log(res.data.data.jinxuandaikuan);
+    });
+  },
+  methods: {
+    submit() {
+      console.log(
+        this.username,
+        this.usertel,
+        this.money,
+        this.zichan,
+        this.hunyin
+      );
+      this.dialogFormVisible1 = true;
+      // this.$http
+      //   .post("http://www.dc.com/api/cdk", {
+      //     params: {
+      //       name: this.username,
+      //       tel: this.usertel,
+      //       amount: this.money,
+      //       dc_zc: this.zichan,
+      //       dc_hy: this.hunyin,
+      //       classId: 3
+      //     }
+      //     headers: { "Content-Type": "application/x-www-form-urlencoded" }
+      //   })
+      //   .then(res => {
+      //     console.log(res.data);
+      //   });
+
+      // 贷款表单提交
+      $.ajax({
+        type: "POST",
+        url: "http://www.dc.com/api/cdk",
+        header: { "Content-Type": "application/x-www-form-urlencoded" },
+        data: {
+          name: this.username,
+          tel: this.usertel,
+          amount: this.money,
+          dc_zc: this.zichan,
+          dc_hy: this.hunyin,
+          class_id: 3
+        },
+        dataType: "json",
+        success: function(data) {
+          console.log(data);
+          $(".image613").attr(
+            "src",
+            "https://www.dc.com/static/upload/qr/timg.jpg"
+          );
+        }
+      });
+
+      //      register() {
+      // this.$http
+      //   .post("http://59.110.241.166:1810/vue/register", {
+      //     params: {
+      //       username: this.username,
+      //       email: this.email,
+      //       password: this.password,
+      //       password1: this.password1,
+      //       phone: this.phone
+      //     }
+      //   })
+      //   .then(res => {
+      //     if (res.data.code == 200) {
+      //       // Toast({
+      //       //   message: res.data.msg,
+      //       //   position: "middle",
+      //       //   duration: 2000
+      //       // });
+      //       MessageBox("提示", "注册成功");
+      //       this.$router.push({ name: "login" });
+      //     } else {
+      //       Toast({
+      //         message: res.data.msg,
+      //         position: "middle",
+      //         duration: 2000
+      //       });
+      //     }
+      //   });
+    }
+  }
+};
 </script>
 
 <style scoped>
@@ -406,11 +363,21 @@ export default {};
   margin-left: 15px;
   border: none;
   color: #fff;
+  cursor: pointer;
+  outline: none;
 }
 .box > img {
   position: absolute;
   top: -12px;
   left: 204px;
+}
+/* 表单 */
+form button {
+  cursor: pointer;
+}
+.image613 {
+  width: 163px;
+  height: 163px;
 }
 </style>
 

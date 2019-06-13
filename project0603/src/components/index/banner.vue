@@ -1,33 +1,31 @@
 <template>
   <div class="box">
-    <div class="w1200">
-      <!-- <div class="right">
+    <!-- <div class="right">
         <img src alt>
-      </div>-->
-      <!-- <el-carousel :interval="3000" arrow="always">
+    </div>-->
+    <!-- <el-carousel :interval="3000" arrow="always">
         <el-carousel-item v-for="item in 4" :key="item">
           <h3>{{ item }}</h3>
         </el-carousel-item>
-      </el-carousel>-->
-      <div class="swiper-container">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <img src="//www.dc.com/static/upload/banner/2.PNG" alt>
-          </div>
-          <div class="swiper-slide">
-            <img src="//www.dc.com/static/upload/banner/3.PNG" alt>
-          </div>
-          <div class="swiper-slide">
-            <img src="//www.dc.com/static/upload/banner/1.PNG" alt>
-          </div>
+    </el-carousel>-->
+    <div class="swiper-container sc">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="//www.dc.com/static/upload/banner/2.PNG" alt>
         </div>
-        <!-- 如果需要分页器 -->
-        <div class="swiper-pagination"></div>
-
-        <!-- 如果需要导航按钮 -->
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
+        <div class="swiper-slide">
+          <img src="//www.dc.com/static/upload/banner/3.PNG" alt>
+        </div>
+        <div class="swiper-slide">
+          <img src="//www.dc.com/static/upload/banner/1.PNG" alt>
+        </div>
       </div>
+      <!-- 如果需要分页器 -->
+      <div class="swiper-pagination"></div>
+
+      <!-- 如果需要导航按钮 -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
     </div>
   </div>
 </template>
@@ -43,16 +41,16 @@ export default {
     };
   },
   created() {
-    this.$http
-      .get("https://www.dc.com/api/getBanner?swiper=3&class_id=1", {
-        params: {
-          // second_category_name: "文学"
-        }
-      })
-      .then(res => {
-        this.list = res.data.data;
-        console.log(res.data.data);
-      });
+    // this.$http
+    //   .get("https://www.dc.com/api/getBanner?swiper=3&class_id=1", {
+    //     params: {
+    //       // second_category_name: "文学"
+    //     }
+    //   })
+    //   .then(res => {
+    //     this.list = res.data.data;
+    //     console.log(res.data.data);
+    //   });
   },
   mounted() {
     new Swiper(".swiper-container", {
@@ -94,6 +92,9 @@ export default {
   background: rgba(39, 93, 205, 1);
   padding-top: 20px;
   box-sizing: border-box;
+}
+.box img {
+  width: 100%;
 }
 .left ul li {
   width: 98px;

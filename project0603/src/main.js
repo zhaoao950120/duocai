@@ -21,7 +21,7 @@ import $ from 'jquery'
 import VueResource from 'vue-resource'
 
 /*使用VueResource插件*/
-Vue.use(VueAwesomeSwiper, /* { default global options } */)
+Vue.use(VueAwesomeSwiper)
 Vue.use(VueResource)
 Vue.use(ElementUI);
 // import VueAxios from 'vue-axios'
@@ -34,7 +34,60 @@ Vue.use(ElementUI);
 // import 'bootstrap/dist/css/bootstrap.min.css'
 // import 'bootstrap/dist/js/bootstrap.min.js'
 
-Vue.config.productionTip = false
+// Vue.config.productionTip = false
+
+(function ($) {
+  setInterval(function () {
+    if ($(".animated-circles").hasClass("animated")) {
+      $(".animated-circles").removeClass("animated");
+    } else {
+      $(".animated-circles").addClass("animated");
+    }
+  }, 2000);
+  var wait = setInterval(function () {
+    $(".livechat-hint")
+      .removeClass("show_hint")
+      .addClass("hide_hint");
+    clearInterval(wait);
+  }, 4500);
+  $(".livechat-girl")
+    .hover(
+      function () {
+        clearInterval(wait);
+        $(".livechat-hint")
+          .removeClass("hide_hint")
+          .addClass("show_hint");
+      },
+      function () {
+        $(".livechat-hint")
+          .removeClass("show_hint")
+          .addClass("hide_hint");
+      }
+    )
+    .click(function () {
+      if (isMobile) {
+        window.location.href = "http://www.baidu.com";
+      } else {
+        var oWidth = 606,
+          oHeight = 630,
+          top = $(window).height() / 2 - oHeight / 2,
+          left = $(window).width() / 2 - oWidth / 2;
+        window.open(
+          "http://www.baidu.com",
+          "",
+          "width=" +
+          oWidth +
+          ",height=" +
+          oHeight +
+          ",scrollbars=yes,top=" +
+          top +
+          ",left=" +
+          left +
+          ",resizable=yes"
+        );
+      }
+    });
+})(jQuery);
 
 /* eslint-disable no-new */
 new Vue({

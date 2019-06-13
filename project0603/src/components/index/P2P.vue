@@ -80,6 +80,23 @@
     <img src="../../assets/image/icon_12.png" alt>
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      list: []
+    };
+  },
+  created() {
+    // p2p数据
+    this.$http.get("http://www.dc.com/").then(res => {
+      this.list = res.data.data.jinxuantuijian;
+      console.log(res.data.data.jinxuantuijian);
+    });
+  }
+};
+</script>
+
 <style scoped>
 .box {
   width: 1200px;

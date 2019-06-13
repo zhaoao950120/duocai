@@ -10,7 +10,12 @@
     </div>
     <!-- 列表 -->
     <ul>
-      <li>
+      <li v-for="(item,index) in list" :key="index">
+        <img src="../../assets/image/blank.png" alt>
+        <p>浦发银行我系列男性主题卡</p>
+        <p>{{item.add_date}}</p>
+      </li>
+      <!-- <li>
         <img src="../../assets/image/blank.png" alt>
         <p>浦发银行我系列男性主题卡</p>
         <p>新用户首刷返刷卡金</p>
@@ -44,16 +49,28 @@
         <img src="../../assets/image/blank.png" alt>
         <p>浦发银行我系列男性主题卡</p>
         <p>新用户首刷返刷卡金</p>
-      </li>
-      <li>
-        <img src="../../assets/image/blank.png" alt>
-        <p>浦发银行我系列男性主题卡</p>
-        <p>新用户首刷返刷卡金</p>
-      </li>
+      </li>-->
     </ul>
     <img src="../../assets/image/icon_11.png" alt>
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      list: []
+    };
+  },
+  created() {
+    // 信用卡数据
+    this.$http.get("http://www.dc.com/").then(res => {
+      this.list = res.data.data.Recommended;
+      console.log(res.data.data.Recommended);
+    });
+  }
+};
+</script>
+
 <style scoped>
 .box {
   width: 1200px;

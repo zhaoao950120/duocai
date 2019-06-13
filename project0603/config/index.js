@@ -11,13 +11,13 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      // 'upload': {
-      //   target: 'http://www.dc.com/',
-      //   changeOrigin: true,
-      //   pathRewrite: {
-      //     '^/upload': ''
-      //   }
-      // }
+      'upload': {
+        target: 'http://www.dc.com/api/cdk',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/upload': ''
+        }
+      }
     },
 
     // Various Dev Server settings

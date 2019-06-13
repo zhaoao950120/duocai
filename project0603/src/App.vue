@@ -6,8 +6,20 @@
 </template>
 
 <script>
+// export default {
+//   name: "App"
+
+// };
+
 export default {
   name: "App"
+  //   components: {},
+  //   data: function() {
+  //     return {};
+  //   },
+  //   created: function() {
+  //     console.log($("#app"));
+  //   }
 };
 </script>
 
