@@ -11,7 +11,7 @@
     <!-- 列表 -->
     <ul>
       <li v-for="(item,index) in list" :key="index">
-        <img src="../../assets/image/blank.png" alt>
+        <img :src="'http://www.dc.com/'+item.logo" alt style="width:197px;height:123px">
         <p>浦发银行我系列男性主题卡</p>
         <p>{{item.add_date}}</p>
       </li>
@@ -65,7 +65,7 @@ export default {
     // 信用卡数据
     this.$http.get("http://www.dc.com/").then(res => {
       this.list = res.data.data.Recommended;
-      console.log(res.data.data.Recommended);
+      // console.log(res.data.data.Recommended);
     });
   }
 };
@@ -83,7 +83,7 @@ export default {
 }
 .box .left {
   width: 204px;
-  height: 400px;
+  height: 412px;
   /* background: linear-gradient(
     0deg,
     rgba(129, 159, 255, 1) 0%,
@@ -96,6 +96,9 @@ export default {
   );
   overflow: hidden;
   transform: translateY(-12px);
+  /* background: url(../../assets/image/icon_dt1.png) no-repeat 0 120px
+    rgba(58, 164, 254, 1); */
+  background: url(../../assets/image/icon_30.png) no-repeat -50px 120px rgba(58, 164, 254, 1);
 }
 .box .left h2 {
   width: 119px;
@@ -106,6 +109,7 @@ export default {
   line-height: 52px;
   color: #fff;
   margin-top: 24px;
+  font-size: 24px;
 }
 .box .left button {
   width: 127px;
@@ -140,8 +144,9 @@ export default {
   font-weight: 400;
   color: rgba(255, 255, 255, 1);
   line-height: 27px;
-  margin: 45px 0 0 140px;
+  margin: 25px 0 0 140px;
   display: inline-block;
+  cursor: pointer;
 }
 
 /*  */
@@ -155,7 +160,7 @@ export default {
 .box ul li {
   width: 230px;
   /* height: 180px; */
-  text-align: center;
+  /* text-align: center; */
   float: left;
   font-size: 14px;
   font-family: MicrosoftYaHei;

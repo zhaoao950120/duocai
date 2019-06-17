@@ -1,5 +1,8 @@
 <template>
   <div class="box">
+    <!-- <div class="image">
+      <img src="../../assets/image/banner1.png" alt>
+    </div>-->
     <!-- <div class="right">
         <img src alt>
     </div>-->
@@ -8,16 +11,10 @@
           <h3>{{ item }}</h3>
         </el-carousel-item>
     </el-carousel>-->
-    <div class="swiper-container sc">
+    <div class="swiper-container">
       <div class="swiper-wrapper">
-        <div
-          class="swiper-slide"
-          v-for="(item,index) in list"
-          :key="index"
-          @click="goto(item.link)"
-          ref="aa"
-        >
-          <img :src="item.uri_path" alt style="width:100%">
+        <div class="swiper-slide" v-for="(item,index) in list" :key="index">
+          <img :src="item.uri_path" alt>
         </div>
         <!-- <div class="swiper-slide">
           <img src="//www.dc.com/static/upload/banner/2.PNG" alt>
@@ -27,9 +24,20 @@
         </div>-->
       </div>
       <!-- 如果需要分页器 -->
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
       <div class="swiper-pagination"></div>
+
+      <!-- 如果需要导航按钮 -->
+      <!-- <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>-->
+    </div>
+    <form action>
+      <h2>预约开户</h2>
+      <input type="text" placeholder="请输入您的姓名" style="color:#fff">
+      <input type="text" placeholder="请输入您的手机号">
+      <button>立即预约开户</button>
+    </form>
+    <div class="yun">
+      <img src="../../assets/image/cloud.png" alt>
     </div>
   </div>
 </template>
@@ -46,14 +54,14 @@ export default {
   },
   created() {
     this.$http
-      .get("https://www.dc.com/api/getBanner?swiper=3&class_id=0", {
+      .get("https://www.dc.com/api/getBanner?swiper=3&class_id=1", {
         params: {
           // second_category_name: "文学"
         }
       })
       .then(res => {
         this.list = res.data.data;
-        console.log(this.list.data);
+        console.log(res.data.data);
       });
   },
   mounted() {
@@ -63,10 +71,8 @@ export default {
         autoplay: {
           delay: 2000, //1秒切换一次
           disableOnInteraction: false,
-          speed: 300,
-          loop: true,
-          observer: true,
-          observeParents: true
+          speed: 100,
+          loop: true
         },
 
         // 如果需要分页器
@@ -87,95 +93,73 @@ export default {
         // initialSlide: 1
         // virtualTranslate: true
       });
-    }, 500);
+    }, 200);
   },
 
-  methods: {
-    goto(url) {
-      // alert(666);
-      window.open(url);
-      console.log(url);
-    }
-  }
+  methods: {}
 };
 </script>
 <style scoped>
 .box {
   width: 100%;
-  height: 332px;
-  background: rgba(39, 93, 205, 1);
-  padding-top: 20px;
-  box-sizing: border-box;
+  height: 540px;
+  position: relative;
 }
 .box img {
   width: 100%;
-  border-radius: 10px;
-  overflow: hidden;
+  height: 540px;
 }
-.left ul li {
-  width: 98px;
-  height: 94px;
-  background-color: #fff;
+.box form {
+  width: 265px;
+  height: 250px;
+  background: rgba(0, 0, 0, 0.5);
+  /* opacity: 0.5; */
   border-radius: 6px;
+  position: absolute;
+  left: 1293px;
+  top: 172px;
   text-align: center;
-  color: rgba(39, 93, 205, 1);
-  margin-bottom: 5px;
+  z-index: 2;
 }
-.left ul li:nth-child(2),
-.left ul li:nth-child(3) {
-  background-color: #93aee6;
-  color: #fff;
+.box form h2 {
+  font-size: 20px;
+  font-family: MicrosoftYaHei;
+  font-weight: 400;
+  color: rgba(204, 204, 204, 1);
+  line-height: 49px;
+  margin-top: 10px;
+  text-align: center;
 }
-
-.left ul li i {
-  width: 29px;
-  height: 32px;
-  margin-top: 19px;
-  background: url(../../assets/image/icon_gp.png);
-  display: inline-block;
-  background-size: 100% 100%;
-}
-.left ul li:nth-child(2) i {
-  background-image: url(../../assets/image/icon_dk1.png);
-}
-.left ul li:nth-child(3) i {
-  background-image: url(../../assets/image/icon_gp1.png);
-}
-.left ul li:hover {
-  background-color: #fff;
-  color: rgba(39, 93, 205, 1);
-}
-/* .left ul li:nth-child(2):hover {
-  background-image: url(../../assets/image/icon_dk.png);
-} */
-.moddie {
-  width: 376px;
-  height: 292px;
-  background-color: #fff;
-  margin-left: 5px;
+.box form input {
+  width: 206px;
+  height: 36px;
+  background: #8293ae;
+  /* border: 1px solid rgba(221, 221, 221, 1); */
+  border: none;
   border-radius: 6px;
+  opacity: 1;
+  color: #ffffff;
+  margin-bottom: 20px;
 }
-.right {
-  width: 1200px;
-  height: 292px;
-  background: rgba(255, 255, 255, 1);
-  border-radius: 6px;
-  /* margin-left: 5px; */
+.box form button {
+  width: 206px;
+  height: 36px;
+  background: rgba(0, 153, 255, 1);
+  border-radius: 18px;
+  border: none;
+  color: #ffffff;
 }
-
-.swiper-container {
-  width: 1200px;
-  height: 292px;
-  border-radius: 10px;
-  overflow: hidden;
-  /* margin: 20px auto; */
-}
-.swiper-slide {
-  border-radius: 10px;
-  overflow: hidden;
-}
-img {
+.box .yun {
   width: 100%;
+  height: 264px;
+  position: absolute;
+  left: 0;
+  bottom: -65px;
+  z-index: 1;
+}
+.box .yun img {
+  width: 100%;
+  height: 264px;
 }
 </style>
 

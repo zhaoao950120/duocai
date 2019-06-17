@@ -12,12 +12,12 @@
             <div class="details fl">
               <div class="title">
                 <h2>XX贷款</h2>
-                <span>超低利率，极速审批</span>
+                <span style="margin-left:15px">超低利率，极速审批</span>
               </div>
-              <div class="mine">
+              <div class="mine" style="margin-bottom: 10px;">
                 <span>额度范围：</span>
                 <span>3000-8000</span>
-                <span>借款期限：</span>
+                <span style="margin-left: 15px;">借款期限：</span>
                 <span>1-3个月</span>
               </div>
               <div class="entry">
@@ -29,7 +29,7 @@
               <p>
                 <span>9999人</span>申请成功
               </p>
-              <button>立即借款</button>
+              <button @click="jiekuan_box">立即借款</button>
             </div>
             <div class="clear"></div>
           </div>
@@ -133,10 +133,100 @@
         <div class="clear"></div>
       </div>
     </div>
+    <!-- 借款弹框1 -->
+    <el-dialog
+      title="快速贷款"
+      :visible.sync="dialogFormVisible"
+      width="16%"
+      top="15vh"
+      center="center"
+      class="dialog"
+    >
+      <input type="text" v-model="money" placeholder="贷款金额（万元）">
+      <input type="text" v-model="username" placeholder="您的姓名">
+      <input type="text" v-model="usertel" placeholder="请输入您的联系方式">
+      <input type="text" v-model="asset" placeholder="资产状况">
+      <el-select
+        v-model="marital1"
+        placeholder="请选择"
+        style="width:80%;margin-bottom:10px;margin-left: 10%;"
+      >
+        <el-option value="未婚"></el-option>
+        <el-option value="已婚"></el-option>
+        <el-option value="离异"></el-option>
+      </el-select>
+      <!-- </el-form> -->
+      <!-- <button>立即借款</button> -->
+      <el-button id="btn_jk" @click="jiekuan1">立即借款</el-button>
+    </el-dialog>
+    <!-- 弹框二维码 -->
+    <el-dialog
+      title="快速贷款"
+      :visible.sync="dialogFormVisible1"
+      width="20%"
+      top="20vh"
+      center="center"
+      class="dialog"
+    >
+      <p>
+        <i class="el-icon-success" style="color:green"></i>恭喜您，您提交的贷款资料 已初审通过！
+      </p>
+      <!-- </el-form> -->
+      <div slot="footer" class="dialog-footer">
+        <p>二维码</p>
+        <img class="image613" src alt>
+      </div>
+    </el-dialog>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      dialogFormVisible: false,
+      dialogFormVisible1: false,
+      money: "",
+      username: "",
+      usertel: "",
+      asset: "",
+      marital1: ""
+    };
+  },
+  created() {},
+  methods: {
+    // 借款提交1
+    jiekuan1() {
+      console.log(
+        this.money,
+        this.username,
+        this.usertel,
+        this.asset,
+        this.marital
+      );
+      this.dialogFormVisible = false;
+      this.dialogFormVisible1 = true;
+      // this.$http
+      //   .post("https://www.dc.com/api/getBanner?swiper=3&class_id=1", {
+      //     params: {
+      //       money: this.money,
+      //       username:this.username,
+      //       usertel:this.usertel,
+      //       asset:this.asset,
+      //       marital:this.marital
+      //     }
+      //   })
+      //   .then(res => {
+      //     this.list = res.data.data;
+      //     console.log(res.data.data);
+      //   });
+    },
+
+    jiekuan_box(e) {
+      e.stopPropagation();
+      this.dialogFormVisible = true;
+    }
+  }
+};
 </script>
 <style scoped>
 .box {
@@ -225,6 +315,8 @@ export default {};
   border: 1px solid rgba(220, 220, 220, 1);
   border-radius: 6px;
   color: rgba(179, 179, 179, 1);
+  padding: 3px;
+  margin-top: 5px;
 }
 .box .left .left_top button {
   width: 161px;
@@ -236,6 +328,8 @@ export default {};
   position: absolute;
   top: 80px;
   right: 38px;
+  outline: none;
+  cursor: pointer;
 }
 /* 文本框 */
 .left_text {
@@ -329,6 +423,7 @@ export default {};
   font-family: MicrosoftYaHei;
   font-weight: 400;
   color: rgba(128, 128, 128, 1);
+  line-height: 25px;
 }
 .mine .right ul li .list_bottom span:nth-child(2n) {
   color: #f35454;
@@ -338,6 +433,40 @@ export default {};
   height: 1px;
   background: rgba(230, 230, 230, 1);
   margin-top: 20px;
+}
+/* 弹框 */
+.dialog {
+  text-align: center;
+}
+.dialog input {
+  width: 80%;
+  margin-left: 10%;
+  height: 39px;
+  background: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(230, 230, 230, 1);
+  border-radius: 6px;
+  margin-bottom: 15px;
+  padding-left: 12px;
+  box-sizing: border-box;
+}
+.dialog input:last-child {
+  margin-bottom: 0;
+}
+.dialog #btn_jk {
+  width: 60%;
+  height: 40px;
+  background: rgba(243, 84, 84, 1);
+  border-radius: 20px;
+  color: rgba(255, 255, 255, 1);
+  border: none;
+  margin: auto;
+  text-align: center;
+  display: inline-block;
+  margin-left: 20%;
+}
+.image613 {
+  width: 163px;
+  height: 163px;
 }
 </style>
 

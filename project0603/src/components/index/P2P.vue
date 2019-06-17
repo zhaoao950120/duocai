@@ -9,7 +9,29 @@
       <span>更多></span>
     </div>
     <ul class="fl">
-      <li>
+      <li v-for="(item,index) in list" :key="index">
+        <div class="top">
+          <img :src="'http://www.dc.com/'+item.logo" alt style="width:180px;height:52px">
+          <p class="p1">恒信易贷 第3期首次出借活动</p>
+          <button>借贷利率低</button>
+          <p class="p2">666.66元</p>
+          <p class="p3">返利红包</p>
+        </div>
+        <div class="bottom">
+          <div class="left_box fl">
+            <p class="p1">10.75-40.72%</p>
+            <p class="p2">返利红包</p>
+          </div>
+          <div class="border fl"></div>
+          <div class="right_box fl">
+            <p class="p1">10000元</p>
+            <p class="p2">最低出错</p>
+          </div>
+          <div class="clear"></div>
+        </div>
+        <button class="btn2">查看详情</button>
+      </li>
+      <!-- <li>
         <div class="top">
           <img src="../../assets/image/p2p.png" alt>
           <p class="p1">玖富普惠</p>
@@ -52,29 +74,7 @@
           <div class="clear"></div>
         </div>
         <button class="btn2">查看详情</button>
-      </li>
-      <li>
-        <div class="top">
-          <img src="../../assets/image/p2p.png" alt>
-          <p class="p1">玖富普惠</p>
-          <button>借贷利率低</button>
-          <p class="p2">666.66元</p>
-          <p class="p3">返利红包</p>
-        </div>
-        <div class="bottom">
-          <div class="left_box fl">
-            <p class="p1">10.75-40.72%</p>
-            <p class="p2">返利红包</p>
-          </div>
-          <div class="border fl"></div>
-          <div class="right_box fl">
-            <p class="p1">10000元</p>
-            <p class="p2">最低出错</p>
-          </div>
-          <div class="clear"></div>
-        </div>
-        <button class="btn2">查看详情</button>
-      </li>
+      </li>-->
     </ul>
     <div class="clear"></div>
     <img src="../../assets/image/icon_12.png" alt>
@@ -90,8 +90,8 @@ export default {
   created() {
     // p2p数据
     this.$http.get("http://www.dc.com/").then(res => {
-      this.list = res.data.data.jinxuantuijian;
-      console.log(res.data.data.jinxuantuijian);
+      this.list = res.data.data.jinxuantuijian.slice(0, 3);
+      // console.log(res.data.data.jinxuantuijian);
     });
   }
 };
@@ -110,13 +110,10 @@ export default {
 .box .left {
   width: 204px;
   height: 320px;
-  background: linear-gradient(
-    0deg,
-    rgba(255, 195, 118, 1) 0%,
-    rgba(255, 108, 88, 1) 100%
-  );
+  background-color: rgba(255, 108, 88, 1);
   overflow: hidden;
   transform: translateY(-12px);
+  background: url(../../assets/image/icon_30.png) no-repeat -50px 120px rgba(255, 108, 88, 1);
 }
 .box .left h2 {
   width: 119px;
@@ -127,6 +124,7 @@ export default {
   line-height: 52px;
   color: #fff;
   margin-top: 24px;
+  font-size: 24px;
 }
 .box .left button {
   width: 127px;
@@ -161,8 +159,9 @@ export default {
   font-weight: 400;
   color: rgba(255, 255, 255, 1);
   line-height: 27px;
-  margin: 45px 0 0 140px;
+  margin: 25px 0 0 140px;
   display: inline-block;
+  cursor: pointer;
 }
 
 /*  */
@@ -177,6 +176,7 @@ export default {
   font-weight: 400;
   color: rgba(51, 51, 51, 1);
   text-align: center;
+  line-height: 28px;
 }
 .box .top button {
   width: 74px;
@@ -191,7 +191,7 @@ export default {
   font-family: MicrosoftYaHei-Bold;
   font-weight: bold;
   color: rgba(243, 84, 84, 1);
-  line-height: 48px;
+  line-height: 40px;
 }
 .box .top .p3 {
   font-size: 12px;
@@ -222,12 +222,14 @@ export default {
   font-family: MicrosoftYaHei;
   font-weight: 400;
   color: rgba(179, 179, 179, 1);
+  line-height: 22px;
 }
 .box ul li .bottom .right_box .p2 {
   font-size: 12px;
   font-family: MicrosoftYaHei;
   font-weight: 400;
   color: rgba(179, 179, 179, 1);
+  line-height: 22px;
 }
 .box ul li .bottom .border {
   width: 1px;

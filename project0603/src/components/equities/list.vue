@@ -265,12 +265,16 @@ export default {};
 /*  */
 .list li .bottom ul li {
   margin: 10px;
+  text-align: center;
 }
 .list li .bottom ul li > div {
   width: 90px;
   height: 90px;
   background: rgba(243, 84, 84, 1);
   border-radius: 10px;
+}
+.list li .bottom ul li > p {
+  line-height: 20px;
 }
 </style>
 

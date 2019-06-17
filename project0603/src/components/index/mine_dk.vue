@@ -3,7 +3,7 @@
     <!-- 左侧 -->
     <div class="left fl">
       <h2>贷款</h2>
-      <button class="btn1">消费</button>
+      <button class="btn1">精选贷款</button>
       <!-- <button class="btn2">购车</button>
       <button class="btn3">购房</button>-->
       <span>更多></span>
@@ -12,13 +12,13 @@
     <div class="middle fl">
       <ul>
         <li v-for="(item,index) in list" :key="index">
-          <div class="top">
+          <div class="top" style="overflow:hidden; margin-right:10px">
             <div class="fl">
-              <img src="../../assets/image/jie.png" alt>
+              <img :src="'http://www.dc.com/'+item.logo" alt style="width:48px;height:48px">
             </div>
             <div class="fl">
               <p class="p1">{{item.title}}</p>
-              <p class="p2">{{item.info}}</p>
+              <p class="p2">{{item.slogan}}</p>
             </div>
             <div class="clear"></div>
           </div>
@@ -26,20 +26,20 @@
           <div class="p2">
             <p class="fl">
               <span>额度范围：</span>
-              <span>10000-40000</span>
+              <span>{{item.quota_amount}}</span>
             </p>
-            <p class="fl" style="margin-left:15px">
+            <p class="fl" style="margin-left:15px;">
               <span>贷款期限：</span>
-              <span>6-12月</span>
+              <span>{{item.ew}}</span>
             </p>
             <div class="clear"></div>
           </div>
 
-          <div class="p3">
-            <button>放款快</button>
-            <button>范围广</button>
+          <div class="p3" style="height: 23px;">
+            <button v-for="(item,index1) in list_ys1" :key="index1">{{item}}</button>
+            <!-- <button>{{list_ys[1]}}</button>
             <button>借款期限长</button>
-            <button>借贷利率低</button>
+            <button>借贷利率低</button>-->
           </div>
         </li>
 
@@ -69,7 +69,12 @@
       </div>
       <div class="name">
         <label for>婚姻状况</label>
-        <input type placeholder="婚姻状况" class="input" v-model="hunyin" name="dc_hy">
+        <!-- <input type placeholder="婚姻状况" class="input" v-model="hunyin" name="dc_hy"> -->
+        <el-select v-model="marital1" placeholder="请选择" style="width:62%;margin-bottom:10px;;">
+          <el-option value="未婚"></el-option>
+          <el-option value="已婚"></el-option>
+          <el-option value="离异"></el-option>
+        </el-select>
       </div>
       <!-- <input type="submit" value="确定"> -->
       <button @click="submit">下一步</button>
@@ -111,14 +116,24 @@ export default {
       zichan: "",
       hunyin: "",
       dialogFormVisible1: false,
-      list: []
+      list: [],
+      list_ys: [],
+      marital1: "",
+      list_ys1: []
     };
   },
   created() {
     // 贷款数据
     this.$http.get("http://www.dc.com/").then(res => {
       this.list = res.data.data.jinxuandaikuan;
-      console.log(res.data.data.jinxuandaikuan);
+      // console.log(res.data.data.jinxuandaikuan);
+      // console.log(eval(res.data.data.jinxuandaikuan[0].ys));
+      this.list_ys = eval(res.data.data.jinxuandaikuan[0].ys);
+      for (var i = 0; i < this.list_ys.length; i++) {
+        if (this.list_ys[i]) {
+          this.list_ys1.push(this.list_ys[i]);
+        }
+      }
     });
   },
   methods: {
@@ -130,7 +145,7 @@ export default {
         this.zichan,
         this.hunyin
       );
-      this.dialogFormVisible1 = true;
+
       // this.$http
       //   .post("http://www.dc.com/api/cdk", {
       //     params: {
@@ -148,27 +163,47 @@ export default {
       //   });
 
       // 贷款表单提交
-      $.ajax({
-        type: "POST",
-        url: "http://www.dc.com/api/cdk",
-        header: { "Content-Type": "application/x-www-form-urlencoded" },
-        data: {
-          name: this.username,
-          tel: this.usertel,
-          amount: this.money,
-          dc_zc: this.zichan,
-          dc_hy: this.hunyin,
-          class_id: 3
-        },
-        dataType: "json",
-        success: function(data) {
-          console.log(data);
-          $(".image613").attr(
-            "src",
-            "https://www.dc.com/static/upload/qr/timg.jpg"
-          );
+      var usernameReg = /\w{4}/gi; //姓名
+      var usertelReg = /^1[3456789][0-9]{9}$/gi; //手机号码
+      if (usernameReg.test(this.username)) {
+        console.log(this.usertel);
+        if (usertelReg.test(this.usertel)) {
+          this.dialogFormVisible1 = true;
+          $.ajax({
+            type: "POST",
+            url: "http://www.dc.com/api/cdk",
+            header: { "Content-Type": "application/x-www-form-urlencoded" },
+            data: {
+              name: this.username,
+              tel: this.usertel,
+              amount: this.money,
+              dc_zc: this.zichan,
+              dc_hy: this.hunyin,
+              class_id: 3
+            },
+            dataType: "json",
+            success: function(data) {
+              // console.log(data);
+              $(".image613").attr(
+                "src",
+                "https://www.dc.com/static/upload/qr/timg.jpg"
+              );
+            }
+          });
+        } else {
+          this.$message({
+            showClose: true,
+            message: "请输入有效的电话号码",
+            type: "error"
+          });
         }
-      });
+      } else {
+        this.$message({
+          showClose: true,
+          message: "请输入合法的姓名",
+          type: "error"
+        });
+      }
 
       //      register() {
       // this.$http
@@ -231,6 +266,7 @@ export default {
   line-height: 52px;
   color: #fff;
   margin-top: 24px;
+  font-size: 24px;
 }
 .box .left button {
   width: 127px;
@@ -265,8 +301,9 @@ export default {
   font-weight: 400;
   color: rgba(255, 255, 255, 1);
   line-height: 27px;
-  margin: 45px 0 0 140px;
+  margin: 25px 0 0 140px;
   display: inline-block;
+  cursor: pointer;
 }
 
 .box .middle {
@@ -311,6 +348,7 @@ export default {
   color: #f35454;
 }
 .box .middle ul li .p3 button {
+  overflow: hidden;
   /* width: 49px; */
   height: 23px;
   border: 1px solid rgba(220, 220, 220, 1);

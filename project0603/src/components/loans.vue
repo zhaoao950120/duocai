@@ -4,7 +4,7 @@
     <!-- 列表 -->
     <div class="content w1200">
       <ul class="list fl">
-        <li>
+        <li @click="detail">
           <div class="logo fl">
             <img src="../assets/image/icon_daikuan.png" alt>
           </div>
@@ -25,7 +25,7 @@
             </div>
           </div>
           <div class="btn fl">
-            <el-button type="text" @click="dialogFormVisible = true">立即借款</el-button>
+            <el-button type="text" @click="jiekuan_box">立即借款</el-button>
           </div>
 
           <div class="clear"></div>
@@ -208,15 +208,30 @@
       </ul>
       <!-- 表单 -->
       <form action class="fl">
-        <h3>快速贷款</h3>
+        <h3>快速贷款1</h3>
         <input type="text" placeholder="贷款金额（万元）" v-model="money1">
         <input type="text" placeholder="您的姓名" v-model="username1">
         <input type="text" placeholder="请输入您的联系方式" v-model="usertel1">
         <input type="text" placeholder="资产状况" v-model="asset1">
-        <input type="text" placeholder="婚姻状况" v-model="marital1">
+        <!-- <input type="text" placeholder="婚姻状况" v-model="marital1"> -->
+        <el-select v-model="marital1" placeholder="请选择" style="width:241px;margin-bottom:10px">
+          <el-option value="未婚"></el-option>
+          <el-option value="已婚"></el-option>
+          <el-option value="离异"></el-option>
+        </el-select>
         <el-button @click="jiekuan">立即借款</el-button>
       </form>
       <div class="clear"></div>
+      <!-- 分页 -->
+      <div class="fenye" style="width:100%;text-align:center;margin-top:20px">
+        <el-pagination
+          background
+          layout="prev, pager, next"
+          :total="30"
+          :page-size="8"
+          :current-page="1"
+        ></el-pagination>
+      </div>
     </div>
     <!-- 借款弹框1 -->
     <el-dialog
@@ -231,12 +246,18 @@
       <input type="text" v-model="username" placeholder="您的姓名">
       <input type="text" v-model="usertel" placeholder="请输入您的联系方式">
       <input type="text" v-model="asset" placeholder="资产状况">
-      <input type="text" v-model="marital" placeholder="婚姻状况">
+      <el-select
+        v-model="marital1"
+        placeholder="请选择"
+        style="width:80%;margin-bottom:10px;margin-left: 10%;"
+      >
+        <el-option value="未婚"></el-option>
+        <el-option value="已婚"></el-option>
+        <el-option value="离异"></el-option>
+      </el-select>
       <!-- </el-form> -->
       <!-- <button>立即借款</button> -->
       <el-button id="btn_jk" @click="jiekuan1">立即借款</el-button>
-      <!-- <el-button @click="dialogFormVisible = false">取 消</el-button>
-      <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>-->
     </el-dialog>
 
     <!-- 弹框二维码 -->
@@ -313,7 +334,6 @@ export default {
   mounted() {},
   methods: {
     jiekuan() {
-      this.dialogFormVisible1 = true;
       console.log(
         this.money1,
         this.username1,
@@ -322,28 +342,49 @@ export default {
         this.marital1
       );
       // 贷款表单提交
-      $.ajax({
-        type: "POST",
-        url: "http://www.dc.com/api/cdk",
-        header: { "Content-Type": "application/x-www-form-urlencoded" },
-        data: {
-          name: this.username1,
-          tel: this.usertel1,
-          amount: this.money1,
-          dc_zc: this.asset1,
-          dc_hy: this.marital1,
-          class_id: 3
-        },
-        dataType: "json",
-        success: function(data) {
-          console.log(data);
-          $(".image613").attr(
-            "src",
-            "https://www.dc.com/static/upload/qr/timg.jpg"
-          );
+      var usernameReg = /\w{4}/gi; //姓名
+      var usertelReg = /^1[3456789][0-9]{9}$/gi; //手机号码
+      if (usernameReg.test(this.username1)) {
+        console.log(this.usertel);
+        if (usertelReg.test(this.usertel1)) {
+          this.dialogFormVisible1 = true; //二维码弹框
+          $.ajax({
+            type: "POST",
+            url: "http://www.dc.com/api/cdk",
+            header: { "Content-Type": "application/x-www-form-urlencoded" },
+            data: {
+              name: this.username1,
+              tel: this.usertel1,
+              amount: this.money1,
+              dc_zc: this.asset1,
+              dc_hy: this.marital1,
+              class_id: 3
+            },
+            dataType: "json",
+            success: function(data) {
+              console.log(data);
+              $(".image613").attr(
+                "src",
+                "https://www.dc.com/static/upload/qr/timg.jpg"
+              );
+            }
+          });
+        } else {
+          this.$message({
+            showClose: true,
+            message: "请输入有效的电话号码",
+            type: "error"
+          });
         }
-      });
+      } else {
+        this.$message({
+          showClose: true,
+          message: "请输入合法的姓名",
+          type: "error"
+        });
+      }
     },
+    // 借款提交1
     jiekuan1() {
       console.log(
         this.money,
@@ -368,14 +409,19 @@ export default {
       //     this.list = res.data.data;
       //     console.log(res.data.data);
       //   });
+    },
+    detail(e) {
+      console.log(e);
+      // alert(11);
+      this.$router.push({
+        name: "loansDetail"
+        // params: { goodsid: id }
+      });
+    },
+    jiekuan_box(e) {
+      e.stopPropagation();
+      this.dialogFormVisible = true;
     }
-    // detail() {
-    //   // alert(11);
-    //   this.$router.push({
-    //     name: "loansDetail"
-    //     // params: { goodsid: id }
-    //   });
-    // }
   }
 };
 </script>
@@ -392,9 +438,7 @@ export default {
   position: relative;
   top: -148px;
 }
-.box .content .list {
-  /* overflow: hidden; */
-}
+
 .box .content .list li {
   width: 885px;
   height: 134px;
@@ -406,6 +450,10 @@ export default {
   box-sizing: border-box;
   position: relative;
   cursor: pointer;
+}
+.box .content .list li:hover {
+  transition: 0.3s;
+  transform: translateY(-3px);
 }
 .box .content .list li img {
   margin-right: 12px;
@@ -424,17 +472,24 @@ export default {
   font-family: MicrosoftYaHei;
   font-weight: 400;
   color: rgba(128, 128, 128, 1);
+  margin-left: 15px;
+}
+.box .content .list li .mine {
+  margin-bottom: 5px;
 }
 .box .content .list li .mine span {
   font-size: 14px;
   font-family: MicrosoftYaHei;
   font-weight: 400;
   color: rgba(51, 51, 51, 1);
-  line-height: 25px;
+  line-height: 35px;
 }
 
 .box .content .list li .mine span:nth-child(2n) {
   color: #f35454;
+}
+.box .content .list li .mine span:nth-child(3) {
+  margin-left: 15px;
 }
 .box .content .list li .entry span {
   width: 49px;
@@ -442,6 +497,8 @@ export default {
   border: 1px solid rgba(220, 220, 220, 1);
   border-radius: 6px;
   color: rgba(179, 179, 179, 1);
+  padding: 5px;
+  margin-top: 5px;
 }
 .box .content .list li button {
   width: 161px;
