@@ -13,12 +13,12 @@
               <ul>
                 <li v-for="(item,index) in list.slice(0, 3)" :key="index" @click="gupiao">
                   <div class="top">
-                    <img :src="'http://www.dc.com/'+item.logo" alt>
+                    <img :src="'http://api.duocai.jiaxunmedia.com/'+item.logo" alt>
                   </div>
                   <div class="content" style="padding:0 35px;box-sizing:box-border">
                     <div class="content_left fl" style="  margin-top: 20px;margin-left:25px">
                       <img
-                        :src="'http://www.dc.com/'+item.vis_img"
+                        :src="'http://api.duocai.jiaxunmedia.com/'+item.vis_img"
                         alt
                         style="width:74px;height:74px"
                       >
@@ -43,12 +43,12 @@
               <ul>
                 <li v-for="(item,index) in list.slice(3, 6)" :key="index" @click="gupiao">
                   <div class="top">
-                    <img :src="'http://www.dc.com/'+item.logo" alt>
+                    <img :src="'http://api.duocai.jiaxunmedia.com/'+item.logo" alt>
                   </div>
                   <div class="content" style="padding:0 35px;box-sizing:box-border">
                     <div class="content_left fl" style="  margin-top: 20px;margin-left:25px">
                       <img
-                        :src="'http://www.dc.com/'+item.vis_img"
+                        :src="'http://api.duocai.jiaxunmedia.com/'+item.vis_img"
                         alt
                         style="width:74px;height:74px"
                       >
@@ -73,12 +73,12 @@
               <ul>
                 <li v-for="(item,index) in list.slice(6, 9)" :key="index" @click="gupiao">
                   <div class="top">
-                    <img :src="'http://www.dc.com/'+item.logo" alt>
+                    <img :src="'http://api.duocai.jiaxunmedia.com/'+item.logo" alt>
                   </div>
                   <div class="content" style="padding:0 35px;box-sizing:box-border">
                     <div class="content_left fl" style="  margin-top: 20px;margin-left:25px">
                       <img
-                        :src="'http://www.dc.com/'+item.vis_img"
+                        :src="'http://api.duocai.jiaxunmedia.com/'+item.vis_img"
                         alt
                         style="width:74px;height:74px"
                       >
@@ -103,12 +103,12 @@
               <ul>
                 <li v-for="(item,index) in list.slice(9, 12)" :key="index" @click="gupiao">
                   <div class="top">
-                    <img :src="'http://www.dc.com/'+item.logo" alt>
+                    <img :src="'http://api.duocai.jiaxunmedia.com/'+item.logo" alt>
                   </div>
                   <div class="content" style="padding:0 35px;box-sizing:box-border">
                     <div class="content_left fl" style="  margin-top: 20px;margin-left:25px">
                       <img
-                        :src="'http://www.dc.com/'+item.vis_img"
+                        :src="'http://api.duocai.jiaxunmedia.com/'+item.vis_img"
                         alt
                         style="width:74px;height:74px"
                       >
@@ -147,13 +147,17 @@
         <ul>
           <li v-for="(item,index) in list1.slice(0, 3)" :key="index">
             <div class="top">
-              <img :src="'http://www.dc.com/'+item.logo" alt>
+              <img :src="'http://api.duocai.jiaxunmedia.com/'+item.logo" alt>
             </div>
             <div class="content" style="padding:0 35px;box-sizing:box-border">
-              <div class="content_left fl" style="  margin-top: 20px;">
-                <img :src="'http://www.dc.com/'+item.vis_img" alt style="width:74px;height:74px">
+              <div class="content_left fl" style="margin-top: 20px; margin-left: 25px;">
+                <img
+                  :src="'http://api.duocai.jiaxunmedia.com/'+item.vis_img"
+                  alt
+                  style="width:74px;height:74px"
+                >
               </div>
-              <div class="content_right fl" style="margin-left:10px;text-align:left">
+              <div class="content_right fl" style="margin-left: 25px; text-align: left;">
                 <p>{{list_ys[0]}}</p>
                 <p>{{list_ys[1]}}</p>
                 <p>{{list_ys[2]}}</p>
@@ -228,7 +232,7 @@ export default {
     //     }
     //   );
     this.$http
-      .get("http://www.dc.com/", {
+      .get("http://duocai.jiaxunmedia.com/duocaiapi/", {
         params: {
           // second_category_name: "文学"
         }
@@ -246,6 +250,7 @@ export default {
         // autoplay: true, //可选选项，自动滑动
         // slidesPerView: 2,
         // spaceBetween: 30,
+        speed: 300,
         autoplay: {
           delay: 3000 //1秒切换一次
         },

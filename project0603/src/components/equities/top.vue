@@ -56,11 +56,14 @@ export default {
   },
   created() {
     this.$http
-      .get("https://www.dc.com/api/getBanner?swiper=3&class_id=1", {
-        params: {
-          // second_category_name: "文学"
+      .get(
+        "http://api.duocai.jiaxunmedia.com/api/getBanner?swiper=3&class_id=1",
+        {
+          params: {
+            // second_category_name: "文学"
+          }
         }
-      })
+      )
       .then(res => {
         this.list = res.data.data;
         console.log(res.data.data);
@@ -100,22 +103,22 @@ export default {
 
   methods: {
     kaihu() {
-      var usernameReg = /\w{4}/gi; //姓名
+      var usernameReg = /^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$/; //姓名
       var usertelReg = /^1[3456789][0-9]{9}$/gi; //手机号码
       if (usernameReg.test(this.username)) {
-        console.log(this.usertel);
         if (usertelReg.test(this.usertel)) {
+          console.log(this.usertel, this.username);
           var that = this;
           $.ajax({
             type: "POST",
-            url: "http://www.dc.com/api/cdk",
+            url: "http://api.duocai.jiaxunmedia.com/api/api/cdk",
             header: { "Content-Type": "application/x-www-form-urlencoded" },
             data: {
-              name: this.username1,
-              tel: this.usertel1,
-              amount: this.money1,
-              dc_zc: this.asset1,
-              dc_hy: this.marital1,
+              name: this.username,
+              tel: this.usertel,
+              // amount: this.money1,
+              // dc_zc: this.asset1,
+              // dc_hy: this.marital1,
               class_id: 3
             },
             dataType: "json",

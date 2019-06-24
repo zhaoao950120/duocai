@@ -7,22 +7,22 @@
           <!-- 头部框 -->
           <div class="left_top">
             <div class="logo fl">
-              <img src="../../assets/image/icon_daikuan.png" alt>
+              <img :src="list.logo" alt style="width:79px;height:79px">
             </div>
             <div class="details fl">
               <div class="title">
-                <h2>XX贷款</h2>
-                <span style="margin-left:15px">超低利率，极速审批</span>
+                <h2>{{list.title}}</h2>
+                <span style="margin-left:15px">{{list.slogan}}</span>
               </div>
               <div class="mine" style="margin-bottom: 10px;">
                 <span>额度范围：</span>
-                <span>3000-8000</span>
+                <span>{{list.quota_amount}}</span>
                 <span style="margin-left: 15px;">借款期限：</span>
-                <span>1-3个月</span>
+                <span>{{list.ew}}</span>
               </div>
               <div class="entry">
-                <span>放款快</span>
-                <span>范围广</span>
+                <span v-for="(item,index) in list.ys" :key="index">{{item}}</span>
+                <!-- <span>范围广</span> -->
               </div>
             </div>
             <div class="btn fr">
@@ -38,14 +38,15 @@
           <div class="left_text">
             <h3>基本信息</h3>
             <div class="text_content">
-              <h4>申请条件</h4>
+              <p v-html="list.content">list.content</p>
+              <!-- <h4>申请条件</h4>
               <p>申请条件，申请条件申请条件申请条件申请条件</p>
               <h4>所需材料</h4>
               <p>所需材料，所需材料，所需材料，所需材料</p>
               <h4>审核说明</h4>
               <p>系统审核</p>
               <h4>平台介绍</h4>
-              <p>新平台，下款稳</p>
+              <p>新平台，下款稳</p>-->
             </div>
           </div>
         </div>
@@ -53,80 +54,30 @@
         <div class="right fl">
           <h2>相关产品</h2>
           <ul>
-            <li>
+            <li v-for="(item,index) in list1" :key="index">
               <div class="list_top">
                 <div class="image fl">
-                  <img src="../../assets/image/douyin.jpg" alt>
+                  <img
+                    :src="'http://api.duocai.jiaxunmedia.com/'+item.logo"
+                    alt
+                    style="width:60px;height:60px"
+                  >
                 </div>
                 <div class="content fl">
-                  <h3>抖音贷款</h3>
-                  <p>这里是slogan</p>
+                  <h3 style="width: 141px;overflow: hidden;height: 40px;">{{item.title}}</h3>
+                  <p
+                    style="width: 141px;height:15px;overflow:hidden;white-space：nowrap;text-overflow：ellipsis"
+                  >{{item.slogan}}</p>
                 </div>
                 <div class="clear"></div>
               </div>
               <div class="list_bottom">
                 <span>范围：</span>
-                <span>3000-8000</span>
+                <span>{{item.quota_amount}}</span>
                 <span>期限：</span>
-                <span>1-3个月</span>
+                <span>{{item.ew}}</span>
               </div>
               <div class="border"></div>
-            </li>
-            <li>
-              <div class="list_top">
-                <div class="image fl">
-                  <img src="../../assets/image/douyin.jpg" alt>
-                </div>
-                <div class="content fl">
-                  <h3>抖音贷款</h3>
-                  <p>这里是slogan</p>
-                </div>
-                <div class="clear"></div>
-              </div>
-              <div class="list_bottom">
-                <span>范围：</span>
-                <span>3000-8000</span>
-                <span>期限：</span>
-                <span>1-3个月</span>
-              </div>
-              <div class="border"></div>
-            </li>
-            <li>
-              <div class="list_top">
-                <div class="image fl">
-                  <img src="../../assets/image/douyin.jpg" alt>
-                </div>
-                <div class="content fl">
-                  <h3>抖音贷款</h3>
-                  <p>这里是slogan</p>
-                </div>
-                <div class="clear"></div>
-              </div>
-              <div class="list_bottom">
-                <span>范围：</span>
-                <span>3000-8000</span>
-                <span>期限：</span>
-                <span>1-3个月</span>
-              </div>
-              <div class="border"></div>
-            </li>
-            <li>
-              <div class="list_top">
-                <div class="image fl">
-                  <img src="../../assets/image/douyin.jpg" alt>
-                </div>
-                <div class="content fl">
-                  <h3>抖音贷款</h3>
-                  <p>这里是slogan</p>
-                </div>
-                <div class="clear"></div>
-              </div>
-              <div class="list_bottom">
-                <span>范围：</span>
-                <span>3000-8000</span>
-                <span>期限：</span>
-                <span>1-3个月</span>
-              </div>
             </li>
           </ul>
         </div>
@@ -189,10 +140,28 @@ export default {
       username: "",
       usertel: "",
       asset: "",
-      marital1: ""
+      marital1: "",
+
+      pid: "",
+      list: "",
+      list1: ""
     };
   },
-  created() {},
+  created() {
+    this.pid = this.$route.params.id;
+    console.log(this.pid);
+    this.$http
+      .get("http://api.duocai.jiaxunmedia.com/api/product/Productinfo?", {
+        params: {
+          pid: this.pid
+        }
+      })
+      .then(res => {
+        this.list = res.data.data.list;
+        console.log(res.data.data.list);
+        this.list1 = res.data.data.recommend;
+      });
+  },
   methods: {
     // 借款提交1
     jiekuan1() {
@@ -384,7 +353,7 @@ export default {
   box-shadow: 0px 0px 21px 0px rgba(0, 0, 0, 0.08);
   border-radius: 6px;
   margin-left: 30px;
-  padding: 20px;
+  padding: 10px 20px;
   box-sizing: border-box;
 }
 .mine .right h2 {

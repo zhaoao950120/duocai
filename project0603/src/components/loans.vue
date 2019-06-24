@@ -4,205 +4,30 @@
     <!-- 列表 -->
     <div class="content w1200">
       <ul class="list fl">
-        <li @click="detail">
+        <li @click="detail(item.pid)" v-for="(item,index) in list" :key="index">
           <div class="logo fl">
-            <img src="../assets/image/icon_daikuan.png" alt>
+            <img :src="item.logo" alt style="width:80px;height:80px">
           </div>
           <div class="details fl">
             <div class="title">
-              <h2>XX贷款</h2>
-              <span>超低利率，极速审批</span>
+              <h2>{{item.title}}</h2>
+              <span>{{item.slogan}}</span>
             </div>
             <div class="mine">
               <span>额度范围：</span>
-              <span>3000-8000</span>
+              <span>{{item.quota_amount}}</span>
               <span>借款期限：</span>
-              <span>1-3个月</span>
+              <span>{{item.ew}}</span>
             </div>
             <div class="entry">
-              <span>放款快</span>
-              <span>范围广</span>
+              <span v-for="(item1,index) in item.ys" :key="index">{{item1}}</span>
+              <!-- <span>范围广</span> -->
             </div>
           </div>
           <div class="btn fl">
             <el-button type="text" @click="jiekuan_box">立即借款</el-button>
           </div>
 
-          <div class="clear"></div>
-        </li>
-        <li>
-          <div class="logo fl">
-            <img src="../assets/image/icon_daikuan.png" alt>
-          </div>
-          <div class="details fl">
-            <div class="title">
-              <h2>XX贷款</h2>
-              <span>超低利率，极速审批</span>
-            </div>
-            <div class="mine">
-              <span>额度范围：</span>
-              <span>3000-8000</span>
-              <span>借款期限：</span>
-              <span>1-3个月</span>
-            </div>
-            <div class="entry">
-              <span>放款快</span>
-              <span>范围广</span>
-            </div>
-          </div>
-          <div class="btn fl">
-            <button>立即借款</button>
-          </div>
-          <div class="clear"></div>
-        </li>
-        <li>
-          <div class="logo fl">
-            <img src="../assets/image/icon_daikuan.png" alt>
-          </div>
-          <div class="details fl">
-            <div class="title">
-              <h2>XX贷款</h2>
-              <span>超低利率，极速审批</span>
-            </div>
-            <div class="mine">
-              <span>额度范围：</span>
-              <span>3000-8000</span>
-              <span>借款期限：</span>
-              <span>1-3个月</span>
-            </div>
-            <div class="entry">
-              <span>放款快</span>
-              <span>范围广</span>
-            </div>
-          </div>
-          <div class="btn fl">
-            <button>立即借款</button>
-          </div>
-          <div class="clear"></div>
-        </li>
-        <li>
-          <div class="logo fl">
-            <img src="../assets/image/icon_daikuan.png" alt>
-          </div>
-          <div class="details fl">
-            <div class="title">
-              <h2>XX贷款</h2>
-              <span>超低利率，极速审批</span>
-            </div>
-            <div class="mine">
-              <span>额度范围：</span>
-              <span>3000-8000</span>
-              <span>借款期限：</span>
-              <span>1-3个月</span>
-            </div>
-            <div class="entry">
-              <span>放款快</span>
-              <span>范围广</span>
-            </div>
-          </div>
-          <div class="btn fl">
-            <button>立即借款</button>
-          </div>
-          <div class="clear"></div>
-        </li>
-        <li>
-          <div class="logo fl">
-            <img src="../assets/image/icon_daikuan.png" alt>
-          </div>
-          <div class="details fl">
-            <div class="title">
-              <h2>XX贷款</h2>
-              <span>超低利率，极速审批</span>
-            </div>
-            <div class="mine">
-              <span>额度范围：</span>
-              <span>3000-8000</span>
-              <span>借款期限：</span>
-              <span>1-3个月</span>
-            </div>
-            <div class="entry">
-              <span>放款快</span>
-              <span>范围广</span>
-            </div>
-          </div>
-          <div class="btn fl">
-            <button>立即借款</button>
-          </div>
-          <div class="clear"></div>
-        </li>
-        <li>
-          <div class="logo fl">
-            <img src="../assets/image/icon_daikuan.png" alt>
-          </div>
-          <div class="details fl">
-            <div class="title">
-              <h2>XX贷款</h2>
-              <span>超低利率，极速审批</span>
-            </div>
-            <div class="mine">
-              <span>额度范围：</span>
-              <span>3000-8000</span>
-              <span>借款期限：</span>
-              <span>1-3个月</span>
-            </div>
-            <div class="entry">
-              <span>放款快</span>
-              <span>范围广</span>
-            </div>
-          </div>
-          <div class="btn fl">
-            <button>立即借款</button>
-          </div>
-          <div class="clear"></div>
-        </li>
-        <li>
-          <div class="logo fl">
-            <img src="../assets/image/icon_daikuan.png" alt>
-          </div>
-          <div class="details fl">
-            <div class="title">
-              <h2>XX贷款</h2>
-              <span>超低利率，极速审批</span>
-            </div>
-            <div class="mine">
-              <span>额度范围：</span>
-              <span>3000-8000</span>
-              <span>借款期限：</span>
-              <span>1-3个月</span>
-            </div>
-            <div class="entry">
-              <span>放款快</span>
-              <span>范围广</span>
-            </div>
-          </div>
-          <div class="btn fl">
-            <button>立即借款</button>
-          </div>
-          <div class="clear"></div>
-        </li>
-        <li>
-          <div class="logo fl">
-            <img src="../assets/image/icon_daikuan.png" alt>
-          </div>
-          <div class="details fl">
-            <div class="title">
-              <h2>XX贷款</h2>
-              <span>超低利率，极速审批</span>
-            </div>
-            <div class="mine">
-              <span>额度范围：</span>
-              <span>3000-8000</span>
-              <span>借款期限：</span>
-              <span>1-3个月</span>
-            </div>
-            <div class="entry">
-              <span>放款快</span>
-              <span>范围广</span>
-            </div>
-          </div>
-          <div class="btn fl">
-            <button>立即借款</button>
-          </div>
           <div class="clear"></div>
         </li>
       </ul>
@@ -227,9 +52,9 @@
         <el-pagination
           background
           layout="prev, pager, next"
-          :total="30"
-          :page-size="8"
-          :current-page="1"
+          :total="total"
+          @current-change="handleCurrentChange"
+          :page-size="pageSize"
         ></el-pagination>
       </div>
     </div>
@@ -328,10 +153,35 @@ export default {
       username1: "",
       usertel1: "",
       asset1: "",
-      marital1: ""
+      marital1: "",
+      // 分页
+
+      // 总数据
+      tableData: [],
+
+      // 默认显示第几页
+      currentPage: 1,
+
+      // 总条数，根据接口获取数据长度(注意：这里不能为空)
+      total: 1,
+
+      // 默认每页显示的条数（可修改）
+      pageSize: 4
     };
   },
-  mounted() {},
+  mounted() {
+    this.$http
+      .get("http://api.duocai.jiaxunmedia.com/api/product?class_id=3", {
+        params: {
+          pageIndex: this.currentPage
+        }
+      })
+      .then(res => {
+        this.list = res.data.data.list;
+        this.total = res.data.data.dataCount;
+        console.log(this.total);
+      });
+  },
   methods: {
     jiekuan() {
       console.log(
@@ -350,7 +200,7 @@ export default {
           this.dialogFormVisible1 = true; //二维码弹框
           $.ajax({
             type: "POST",
-            url: "http://www.dc.com/api/cdk",
+            url: "http://api.duocai.jiaxunmedia.com/api/cdk",
             header: { "Content-Type": "application/x-www-form-urlencoded" },
             data: {
               name: this.username1,
@@ -410,17 +260,32 @@ export default {
       //     console.log(res.data.data);
       //   });
     },
-    detail(e) {
-      console.log(e);
+    detail(id) {
+      console.log(id);
       // alert(11);
       this.$router.push({
-        name: "loansDetail"
-        // params: { goodsid: id }
+        name: "loansDetail",
+        params: { id: id }
       });
     },
     jiekuan_box(e) {
       e.stopPropagation();
       this.dialogFormVisible = true;
+    },
+    // 分页
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
+      this.currentPage = val;
+      this.$http
+        .get("http://api.duocai.jiaxunmedia.com/api/product?class_id=3", {
+          params: {
+            pageIndex: this.currentPage
+          }
+        })
+        .then(res => {
+          this.list = res.data.data.list;
+          this.total = res.data.data.dataCount;
+        });
     }
   }
 };

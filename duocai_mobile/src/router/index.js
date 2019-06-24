@@ -37,7 +37,7 @@ export default new Router({
       component: xinyongka
     },
     {
-      path: '/daikuan_detile',
+      path: '/daikuan_detile/:id',
       name: 'daikuan_detile',
       component: daikuan_detile
     },

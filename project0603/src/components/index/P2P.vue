@@ -11,7 +11,11 @@
     <ul class="fl">
       <li v-for="(item,index) in list" :key="index">
         <div class="top">
-          <img :src="'http://www.dc.com/'+item.logo" alt style="width:180px;height:52px">
+          <img
+            :src="'http://api.duocai.jiaxunmedia.com/'+item.logo"
+            alt
+            style="width:180px;height:52px"
+          >
           <p class="p1">恒信易贷 第3期首次出借活动</p>
           <button>借贷利率低</button>
           <p class="p2">666.66元</p>
@@ -89,7 +93,7 @@ export default {
   },
   created() {
     // p2p数据
-    this.$http.get("http://www.dc.com/").then(res => {
+    this.$http.get("http://duocai.jiaxunmedia.com/duocaiapi/").then(res => {
       this.list = res.data.data.jinxuantuijian.slice(0, 3);
       // console.log(res.data.data.jinxuantuijian);
     });

@@ -8,13 +8,13 @@
           <h3>{{ item }}</h3>
         </el-carousel-item>
     </el-carousel>-->
-    <div class="swiper-container sc">
+    <div class="swiper-container sc" v-if="list.length>0">
       <div class="swiper-wrapper">
         <div
           class="swiper-slide"
           v-for="(item,index) in list"
           :key="index"
-          @click="goto(item.link)"
+          @click.stop.prevent="goto(item.link)"
           ref="aa"
         >
           <img :src="item.uri_path" alt style="width:100%">
@@ -46,48 +46,53 @@ export default {
   },
   created() {
     this.$http
-      .get("https://www.dc.com/api/getBanner?swiper=3&class_id=0", {
-        params: {
-          // second_category_name: "文学"
+      .get(
+        "http://api.duocai.jiaxunmedia.com/api/getBanner?swiper=3&class_id=0",
+        {
+          params: {
+            // second_category_name: "文学"
+          }
         }
-      })
+      )
       .then(res => {
         this.list = res.data.data;
-        console.log(this.list.data);
+        console.log(this.list);
       });
   },
+
   mounted() {
-    setTimeout(() => {
-      new Swiper(".swiper-container", {
-        // autoplay: true, //可选选项，自动滑动
-        autoplay: {
-          delay: 2000, //1秒切换一次
-          disableOnInteraction: false,
-          speed: 300,
-          loop: true,
-          observer: true,
-          observeParents: true
-        },
+    new Swiper(".swiper-container", {
+      // autoplay: true, //可选选项，自动滑动
+      autoplay: {
+        delay: 2000, //1秒切换一次
+        disableOnInteraction: true,
+        // speed: 300,
+        loop: true
+      },
 
-        // 如果需要分页器
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true
-        },
-        // 如果需要前进后退按钮
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev"
+      // 如果需要分页器
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true
+      },
+      // 如果需要前进后退按钮
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev"
+      },
+      on: {
+        navigationHide: function() {
+          alert("按钮隐藏了");
         }
+      }
 
-        // nextButton: ".swiper-button-next",
-        // prevButton: ".swiper-button-prev",
-        // // 如果需要滚动条
-        // scrollbar: ".swiper-scrollbar",
-        // initialSlide: 1
-        // virtualTranslate: true
-      });
-    }, 500);
+      // nextButton: ".swiper-button-next",
+      // prevButton: ".swiper-button-prev",
+      // // 如果需要滚动条
+      // scrollbar: ".swiper-scrollbar",
+      // initialSlide: 1
+      // virtualTranslate: true
+    });
   },
 
   methods: {

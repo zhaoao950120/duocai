@@ -27,7 +27,7 @@ export default new Router({
       component: loans
     },
     {
-      path: '/loansDetail',
+      path: '/loansDetail/:id',
       name: 'loansDetail',
       component: loansDetail
     },

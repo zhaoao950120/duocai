@@ -2,110 +2,61 @@
   <div class="box">
     <div class="top"></div>
     <ul>
-      <li>
+      <li v-for="(item,index) in list.slice(0,3)" :key="index">
         <div class="title">
-          <img src="../assets/icon_11.jpg" alt>
+          <img :src="item.logo" alt>
         </div>
         <div class="content">
           <span>介绍：</span>
-          <span>红塔证券股份有限公司是在对云南省三家信托投资公司(云南省国际信托投资公司、云南金旅信托投资有限公司、昆明国际信托投资公司</span>
+          <span>{{item.descript}}</span>
         </div>
         <div class="youshi">
           <p>
             <span>服务优势：</span>
-            <span>股票两融佣金万一</span>
+            <span v-for="(item1,index) in item.ys.slice(0,1)" :key="index" style>{{item1}}</span>
             <!-- <span>无资金要求万一开户</span>
             <span>股票两融佣金万一</span>-->
           </p>
         </div>
         <dl>
-          <dd>
-            <div class="img"></div>
-            <p>XXXXXXXX</p>
-          </dd>
-          <dd>
-            <div class="img"></div>
-            <p>XXXXXXXX</p>
-          </dd>
-          <dd>
-            <div class="img"></div>
+          <dd v-for="(item2,index) in item.image" :key="index" style="text-align:center">
+            <img :src="item2" alt style="width:0.9rem;height:0.71rem;display:inline-block">
             <p>XXXXXXXX</p>
           </dd>
         </dl>
-        <button>立即开户</button>
-      </li>
-      <li>
-        <div class="title">
-          <img src="../assets/icon_11.jpg" alt>
+        <div class="btn">
+          <a :href="item.link">
+            <button>立即开户</button>
+          </a>
         </div>
-        <div class="content">
-          <span>介绍：</span>
-          <span>红塔证券股份有限公司是在对云南省三家信托投资公司(云南省国际信托投资公司、云南金旅信托投资有限公司、昆明国际信托投资公司</span>
-        </div>
-        <div class="youshi">
-          <p>
-            <span>服务优势：</span>
-            <span>股票两融佣金万一</span>
-            <!-- <span>无资金要求万一开户</span>
-            <span>股票两融佣金万一</span>-->
-          </p>
-        </div>
-        <dl>
-          <dd>
-            <div class="img"></div>
-            <p>XXXXXXXX</p>
-          </dd>
-          <dd>
-            <div class="img"></div>
-            <p>XXXXXXXX</p>
-          </dd>
-          <dd>
-            <div class="img"></div>
-            <p>XXXXXXXX</p>
-          </dd>
-        </dl>
-        <button>立即开户</button>
-      </li>
-      <li>
-        <div class="title">
-          <img src="../assets/icon_11.jpg" alt>
-        </div>
-        <div class="content">
-          <span>介绍：</span>
-          <span>红塔证券股份有限公司是在对云南省三家信托投资公司(云南省国际信托投资公司、云南金旅信托投资有限公司、昆明国际信托投资公司</span>
-        </div>
-        <div class="youshi">
-          <p>
-            <span>服务优势：</span>
-            <span>股票两融佣金万一</span>
-            <!-- <span>无资金要求万一开户</span>
-            <span>股票两融佣金万一</span>-->
-          </p>
-        </div>
-        <dl>
-          <dd>
-            <div class="img"></div>
-            <p>XXXXXXXX</p>
-          </dd>
-          <dd>
-            <div class="img"></div>
-            <p>XXXXXXXX</p>
-          </dd>
-          <dd>
-            <div class="img"></div>
-            <p>XXXXXXXX</p>
-          </dd>
-        </dl>
-        <button>立即开户</button>
       </li>
     </ul>
-    <h4>©2014-2019©湖北中亿嘉讯传媒有限公司 未经书面授权禁止复制或建立镜像</h4>
+    <footer>
+      <p class="p1">
+        中亿多财仅为信息发布平台，并不对第三方发布的金融服务信息的真实性及准确性负责，
+        且不提供金融投资服务。
+      </p>
+      <p>市场有风险，投资需谨慎！</p>
+      <p class="p3">2014-2019湖北中亿嘉讯传媒有限公司 未经书面授权禁止转载</p>
+    </footer>
   </div>
 </template>
 <script>
 export default {
   data() {
-    return {};
+    return {
+      list: []
+    };
+  },
+  created() {
+    this.$http
+      .get("http://api.duocai.jiaxunmedia.com/api/product?class_id=1", {
+        params: {}
+      })
+      .then(res => {
+        this.list = res.data.data.list;
+        console.log(this.list);
+      });
   }
 };
 </script>
@@ -121,10 +72,12 @@ export default {
 .box ul {
   width: 100%;
   margin-top: 8.3rem;
+  background-color: #fb1e17;
+  padding-bottom: 0.5rem;
 }
 .box ul li {
   width: 6.6rem;
-  height: 6.1rem;
+  /* height: 6.1rem; */
   background-color: #fff;
   box-shadow: 0px 0px 21px 0px rgba(109, 3, 0, 0.16);
   border-radius: 6px;
@@ -132,6 +85,9 @@ export default {
   margin-bottom: 0.5rem;
   padding: 0 0.3rem;
   box-sizing: border-box;
+}
+.box ul li:nth-last-child(1) {
+  margin-bottom: 0;
 }
 .box ul li .title {
   text-align: center;
@@ -147,7 +103,11 @@ export default {
   font-family: MicrosoftYaHei;
   font-weight: 400;
   color: rgba(128, 128, 128, 1);
-  line-height: 0.32rem;
+  /* line-height: 0.32rem; */
+  /* display: -webkit-box; */
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  /* overflow: hidden; */
 }
 .box ul li .content span:nth-child(2) {
   color: #333333;
@@ -171,12 +131,29 @@ export default {
   padding-left: 0.08rem;
   padding-right: 0.08rem;
 }
+.box ul li .youshi span:nth-child(3),
+.box ul li .youshi span:nth-child(4) {
+  height: 0.39rem;
+  background: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(245, 112, 112, 1);
+  border-radius: 6px;
+  font-size: 0.16rem;
+  font-family: MicrosoftYaHei;
+  font-weight: 400;
+  color: rgba(245, 112, 112, 1);
+  padding: 0.05rem;
+  padding-left: 0.08rem;
+  padding-right: 0.08rem;
+  margin: 0.2rem;
+  /* box-sizing: border-box; */
+}
 .box ul li .youshi p {
   margin: 0.2rem 0;
 }
 .box ul li dl {
   display: flex;
   justify-content: space-around;
+  height: 103px;
 }
 .box ul li dl dd {
   flex: 0.3;
@@ -197,6 +174,9 @@ export default {
   color: rgba(51, 51, 51, 1);
   margin: 0.2rem 0;
 }
+.btn {
+  text-align: center;
+}
 .box ul li button {
   width: 3.33rem;
   height: 0.65rem;
@@ -205,7 +185,8 @@ export default {
   border: 0;
   color: #fff;
   margin: auto;
-  display: block;
+  display: inline-block;
+  margin-bottom: 0.3rem;
 }
 h4 {
   font-size: 0.18rem;
@@ -216,6 +197,21 @@ h4 {
   padding: 0 0.5rem;
   margin-top: 1rem;
   line-height: 0.3rem;
+}
+footer {
+  width: 7.5rem;
+  /* height: 1rem; */
+  background: rgba(51, 51, 51, 1);
+  text-align: center;
+  padding: 0 0.2rem;
+  box-sizing: border-box;
+}
+footer p {
+  font-size: 0.1rem;
+  font-family: MicrosoftYaHei;
+  font-weight: 400;
+  color: rgba(179, 179, 179, 1);
+  line-height: 0.4rem;
 }
 </style>
 

@@ -2,216 +2,113 @@
   <div class="box">
     <img src="../assets/banner_daikuan.png" alt>
     <ul>
-      <li>
+      <li v-for="(item,index) in list" :key="index" @click="goto(item.pid)">
         <div class="top">
-          <img src="../assets/douyin.png" alt class="fl">
+          <img :src="item.logo" alt class="fl">
           <div class="top_middle fl">
             <div class="top_middle_t">
-              <h2 class="fl">AAA贷款</h2>
-              <p class="fl">
-                <span>放款快</span>
-                <span>范围广</span>
-              </p>
+              <h2
+                class="fl"
+                style="width:1rem;overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap;"
+              >{{item.title}}</h2>
+
               <div class="clear"></div>
             </div>
             <div class="top_middle_b">
               <div class="b_left fl">
-                <p>3000-8000</p>
+                <p>{{item.quota_amount}}</p>
                 <p>额度范围</p>
               </div>
               <div class="b_right fl">
-                <p>1-3个月</p>
+                <p style="height:15px">{{item.ew}}</p>
                 <p>借款期限</p>
               </div>
             </div>
           </div>
           <div class="top_right fl">
-            <span>22.5万人申请</span>
-            <button>立即开户</button>
+            <span>{{item.number}}人申请</span>
+            <a :href="item.link">
+              <button @click.stop.prevent="goto_kaihu(item.link)">立即开户</button>
+            </a>
           </div>
           <div class="clear"></div>
         </div>
+        <p class="youshi">
+          <!-- <span v-for="(item1,index) in item.ys" :key="index" v-show="item1">{{item1}}</span> -->
+          <span>{{item.ys[0]}}</span>
+          <!-- <span>范围广</span> -->
+        </p>
         <div class="buttom">
-          <p>一句slogan，一句slogan，一句slogan 拷贝</p>
+          <p>{{item.slogan}}</p>
         </div>
       </li>
-      <li>
-        <div class="top">
-          <img src="../assets/douyin.png" alt class="fl">
-          <div class="top_middle fl">
-            <div class="top_middle_t">
-              <h2 class="fl">AAA贷款</h2>
-              <p class="fl">
-                <span>放款快</span>
-                <span>范围广</span>
-              </p>
-              <div class="clear"></div>
-            </div>
-            <div class="top_middle_b">
-              <div class="b_left fl">
-                <p>3000-8000</p>
-                <p>额度范围</p>
-              </div>
-              <div class="b_right fl">
-                <p>1-3个月</p>
-                <p>借款期限</p>
-              </div>
-            </div>
-          </div>
-          <div class="top_right fl">
-            <span>22.5万人申请</span>
-            <button>立即开户</button>
-          </div>
-          <div class="clear"></div>
-        </div>
-        <div class="buttom">
-          <p>一句slogan，一句slogan，一句slogan 拷贝</p>
-        </div>
-      </li>
-      <li>
-        <div class="top">
-          <img src="../assets/douyin.png" alt class="fl">
-          <div class="top_middle fl">
-            <div class="top_middle_t">
-              <h2 class="fl">AAA贷款</h2>
-              <p class="fl">
-                <span>放款快</span>
-                <span>范围广</span>
-              </p>
-              <div class="clear"></div>
-            </div>
-            <div class="top_middle_b">
-              <div class="b_left fl">
-                <p>3000-8000</p>
-                <p>额度范围</p>
-              </div>
-              <div class="b_right fl">
-                <p>1-3个月</p>
-                <p>借款期限</p>
-              </div>
-            </div>
-          </div>
-          <div class="top_right fl">
-            <span>22.5万人申请</span>
-            <button>立即开户</button>
-          </div>
-          <div class="clear"></div>
-        </div>
-        <div class="buttom">
-          <p>一句slogan，一句slogan，一句slogan 拷贝</p>
-        </div>
-      </li>
-      <li>
-        <div class="top">
-          <img src="../assets/douyin.png" alt class="fl">
-          <div class="top_middle fl">
-            <div class="top_middle_t">
-              <h2 class="fl">AAA贷款</h2>
-              <p class="fl">
-                <span>放款快</span>
-                <span>范围广</span>
-              </p>
-              <div class="clear"></div>
-            </div>
-            <div class="top_middle_b">
-              <div class="b_left fl">
-                <p>3000-8000</p>
-                <p>额度范围</p>
-              </div>
-              <div class="b_right fl">
-                <p>1-3个月</p>
-                <p>借款期限</p>
-              </div>
-            </div>
-          </div>
-          <div class="top_right fl">
-            <span>22.5万人申请</span>
-            <button>立即开户</button>
-          </div>
-          <div class="clear"></div>
-        </div>
-        <div class="buttom">
-          <p>一句slogan，一句slogan，一句slogan 拷贝</p>
-        </div>
-      </li>
-      <li>
-        <div class="top">
-          <img src="../assets/douyin.png" alt class="fl">
-          <div class="top_middle fl">
-            <div class="top_middle_t">
-              <h2 class="fl">AAA贷款</h2>
-              <p class="fl">
-                <span>放款快</span>
-                <span>范围广</span>
-              </p>
-              <div class="clear"></div>
-            </div>
-            <div class="top_middle_b">
-              <div class="b_left fl">
-                <p>3000-8000</p>
-                <p>额度范围</p>
-              </div>
-              <div class="b_right fl">
-                <p>1-3个月</p>
-                <p>借款期限</p>
-              </div>
-            </div>
-          </div>
-          <div class="top_right fl">
-            <span>22.5万人申请</span>
-            <button>立即开户</button>
-          </div>
-          <div class="clear"></div>
-        </div>
-        <div class="buttom">
-          <p>一句slogan，一句slogan，一句slogan 拷贝</p>
-        </div>
-      </li>
-      <li>
-        <div class="top">
-          <img src="../assets/douyin.png" alt class="fl">
-          <div class="top_middle fl">
-            <div class="top_middle_t">
-              <h2 class="fl">AAA贷款</h2>
-              <p class="fl">
-                <span>放款快</span>
-                <span>范围广</span>
-              </p>
-              <div class="clear"></div>
-            </div>
-            <div class="top_middle_b">
-              <div class="b_left fl">
-                <p>3000-8000</p>
-                <p>额度范围</p>
-              </div>
-              <div class="b_right fl">
-                <p>1-3个月</p>
-                <p>借款期限</p>
-              </div>
-            </div>
-          </div>
-          <div class="top_right fl">
-            <span>22.5万人申请</span>
-            <button>立即开户</button>
-          </div>
-          <div class="clear"></div>
-        </div>
-        <div class="buttom">
-          <p>一句slogan，一句slogan，一句slogan 拷贝</p>
-        </div>
-      </li>
-      <li>加载更多</li>
+      <li @click="add">加载更多</li>
     </ul>
-    <p>©2014-2019©湖北中亿嘉讯传媒有限公司 未经书面授权禁止复制或建立镜像</p>
+    <footer>
+      <p class="p1">
+        中亿多财仅为信息发布平台，并不对第三方发布的金融服务信息的真实性及准确性负责，
+        且不提供金融投资服务。
+      </p>
+      <p>市场有风险，投资需谨慎！</p>
+
+      <p class="p3">2014-2019湖北中亿嘉讯传媒有限公司 未经书面授权禁止转载</p>
+    </footer>
   </div>
 </template>
 <script>
 export default {
   data() {
-    return {};
+    return {
+      list: [],
+      pageIndex: 1
+    };
   },
-  created() {},
-  methods: {}
+  created() {
+    this.$http
+      .get("http://api.duocai.jiaxunmedia.com/api/product?class_id=3", {
+        params: {}
+      })
+      .then(res => {
+        this.list = res.data.data.list.slice(0, 5);
+        console.log(res.data.data);
+      });
+  },
+  methods: {
+    goto(id) {
+      console.log(id);
+      this.$router.push({
+        name: "daikuan_detile",
+        params: { id: id }
+      });
+    },
+    add() {
+      var _this = this;
+      var index = 1;
+      // index++;
+      // ++index;
+      index = index + 1;
+      this.pageIndex++;
+      console.log(this.pageIndex);
+      this.$http
+        .get("http://api.duocai.jiaxunmedia.com/api/product?class_id=3", {
+          params: {
+            pageIndex: this.pageIndex
+          }
+        })
+        .then(res => {
+          this.list1 = res.data;
+          console.log(this.list1);
+
+          this.list = this.list.concat(this.list1);
+          // window.location.reload();
+        });
+    },
+    goto_kaihu(url) {
+      window.location.href = url;
+    }
+  }
 };
 </script>
 <style scoped>
@@ -228,7 +125,7 @@ export default {
 }
 .box ul li {
   width: 6.91rem;
-  height: 2.05rem;
+  /* height: 2.05rem; */
   background: rgba(255, 255, 255, 1);
   box-shadow: 0px 0px 0.2rem 0px rgba(0, 0, 0, 0.09);
   border-radius: 0.1rem;
@@ -351,6 +248,44 @@ export default {
   line-height: 0.26rem;
   opacity: 0.5;
   text-align: center;
+}
+footer {
+  width: 7.5rem;
+  /* height: 1rem; */
+  background: rgba(51, 51, 51, 1);
+  text-align: center;
+  padding: 0 0.2rem;
+  box-sizing: border-box;
+}
+footer p {
+  font-size: 0.14rem;
+  font-family: MicrosoftYaHei;
+  font-weight: 400;
+  color: rgba(179, 179, 179, 1);
+  line-height: 0.4rem;
+}
+
+/* 优势 */
+.youshi {
+  /* overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; */
+  margin-top: 0.2rem;
+  margin-left: 0.2rem;
+}
+.youshi span {
+  margin: 0 0.05rem;
+  /* overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; */
+  /* width: 0.5rem; */
+  font-size: 0.2rem;
+  color: #808080;
+  border: 1px solid rgba(179, 179, 179, 1);
+  border-radius: 6px;
+  display: inline-block;
+  margin: 0.05rem;
+  padding: 0 0.1rem;
 }
 </style>
 

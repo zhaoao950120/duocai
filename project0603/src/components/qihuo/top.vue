@@ -54,11 +54,14 @@ export default {
   },
   created() {
     this.$http
-      .get("https://www.dc.com/api/getBanner?swiper=3&class_id=1", {
-        params: {
-          // second_category_name: "文学"
+      .get(
+        "http://api.duocai.jiaxunmedia.com/api/getBanner?swiper=3&class_id=1",
+        {
+          params: {
+            // second_category_name: "文学"
+          }
         }
-      })
+      )
       .then(res => {
         this.list = res.data.data;
         console.log(res.data.data);

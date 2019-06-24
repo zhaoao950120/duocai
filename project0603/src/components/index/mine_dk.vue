@@ -14,7 +14,11 @@
         <li v-for="(item,index) in list" :key="index">
           <div class="top" style="overflow:hidden; margin-right:10px">
             <div class="fl">
-              <img :src="'http://www.dc.com/'+item.logo" alt style="width:48px;height:48px">
+              <img
+                :src="'http://api.duocai.jiaxunmedia.com/'+item.logo"
+                alt
+                style="width:48px;height:48px"
+              >
             </div>
             <div class="fl">
               <p class="p1">{{item.title}}</p>
@@ -124,12 +128,14 @@ export default {
   },
   created() {
     // 贷款数据
-    this.$http.get("http://www.dc.com/").then(res => {
+    this.$http.get("http://duocai.jiaxunmedia.com/duocaiapi/").then(res => {
       this.list = res.data.data.jinxuandaikuan;
       // console.log(res.data.data.jinxuandaikuan);
       // console.log(eval(res.data.data.jinxuandaikuan[0].ys));
+      console.log(res.data.data.jinxuandaikuan);
+
       this.list_ys = eval(res.data.data.jinxuandaikuan[0].ys);
-      for (var i = 0; i < this.list_ys.length; i++) {
+      for (var i = 0; i < 2; i++) {
         if (this.list_ys[i]) {
           this.list_ys1.push(this.list_ys[i]);
         }
@@ -171,7 +177,7 @@ export default {
           this.dialogFormVisible1 = true;
           $.ajax({
             type: "POST",
-            url: "http://www.dc.com/api/cdk",
+            url: "http://duocai.jiaxunmedia.com/duocaiapi/api/cdk",
             header: { "Content-Type": "application/x-www-form-urlencoded" },
             data: {
               name: this.username,

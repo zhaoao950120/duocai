@@ -8,6 +8,12 @@ import router from './router'
 
 import "./styles/common.css"
 import "./styles/font/iconfont.css"
+
+/*引入资源请求插件*/
+import VueResource from 'vue-resource'
+
+/*使用VueResource插件*/
+Vue.use(VueResource)
 Vue.use(MintUI)
 
 Vue.config.productionTip = false

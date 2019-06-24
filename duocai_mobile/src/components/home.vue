@@ -1,7 +1,9 @@
 <template>
   <div class="box">
     <div class="header">
-      <h1>中亿·多财</h1>
+      <h1>
+        <img src="../assets/logo1.png" alt style="width:1.7rem">
+      </h1>
       <div class="icon" @click="nav">
         <img src="../assets/icon_1.png" alt>
       </div>
@@ -9,10 +11,10 @@
     <!-- 轮播图 -->
     <div class="lunbo">
       <mt-swipe :auto="2000">
-        <mt-swipe-item>
-          <img src="../assets/banner1.png" alt>
+        <mt-swipe-item v-for="(item,index) in list1" :key="index">
+          <img :src="item.uri_path" alt style="height:3.42rem">
         </mt-swipe-item>
-        <mt-swipe-item>
+        <!-- <mt-swipe-item>
           <img src="http://img50.ddimg.cn/9003260117115410.jpg" alt style="height:100%">
         </mt-swipe-item>
         <mt-swipe-item>
@@ -21,7 +23,7 @@
             alt
             style="height:100%"
           >
-        </mt-swipe-item>
+        </mt-swipe-item>-->
       </mt-swipe>
     </div>
     <!-- 股票 -->
@@ -29,11 +31,35 @@
       <div class="title">
         <div class="border"></div>
         <h3>股票</h3>
-        <span>更多 ></span>
+        <router-link :to="{name: 'gupiao'}">
+          <span>更多 ></span>
+        </router-link>
         <div class="clear"></div>
       </div>
       <ul>
-        <li>
+        <li v-for="(item,index) in gupiao.slice(0,2)" :key="index" @click="goto_gupiao">
+          <div class="top">
+            <img :src="'http://api.duocai.jiaxunmedia.com/'+item.logo" alt>
+          </div>
+          <div
+            class="middle"
+            v-for="(item1,index) in item.ys[0].slice(0,3)"
+            :key="index"
+            style="height:25px"
+          >
+            <p
+              style="overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;margin:0 0.3rem"
+            >{{item1}}</p>
+            <!-- <p>万2.5佣金</p>
+            <p>万2.5佣金</p>-->
+          </div>
+          <a :href="item.link">
+            <mt-button type="danger" size="small">立即开户</mt-button>
+          </a>
+        </li>
+        <!-- <li>
           <div class="top">
             <img src="../assets/icon_3.png" alt>
           </div>
@@ -43,18 +69,7 @@
             <p>万2.5佣金</p>
           </div>
           <mt-button type="danger" size="small">立即开户</mt-button>
-        </li>
-        <li>
-          <div class="top">
-            <img src="../assets/icon_3.png" alt>
-          </div>
-          <div class="middle">
-            <p>万2.5佣金</p>
-            <p>万2.5佣金</p>
-            <p>万2.5佣金</p>
-          </div>
-          <mt-button type="danger" size="small">立即开户</mt-button>
-        </li>
+        </li>-->
         <div class="clear"></div>
       </ul>
     </div>
@@ -67,7 +82,25 @@
         <div class="clear"></div>
       </div>
       <ul>
-        <li>
+        <li v-for="(item,index) in qihuo.slice(0,2)" :key="index">
+          <div class="top">
+            <img :src="'http://api.duocai.jiaxunmedia.com/'+item.logo" alt>
+          </div>
+          <div
+            class="middle"
+            v-for="(item1,index) in item.ys[0].slice(0,3)"
+            :key="index"
+            style="height:25px"
+          >
+            <p>{{item1}}</p>
+            <!-- <p>万2.5佣金</p>
+            <p>万2.5佣金</p>-->
+          </div>
+          <a :href="item.link">
+            <mt-button type="danger" size="small">立即开户</mt-button>
+          </a>
+        </li>
+        <!-- <li>
           <div class="top">
             <img src="../assets/icon_3.png" alt>
           </div>
@@ -77,18 +110,7 @@
             <p>万2.5佣金</p>
           </div>
           <mt-button type="danger" size="small">立即开户</mt-button>
-        </li>
-        <li>
-          <div class="top">
-            <img src="../assets/icon_3.png" alt>
-          </div>
-          <div class="middle">
-            <p>万2.5佣金</p>
-            <p>万2.5佣金</p>
-            <p>万2.5佣金</p>
-          </div>
-          <mt-button type="danger" size="small">立即开户</mt-button>
-        </li>
+        </li>-->
         <div class="clear"></div>
       </ul>
     </div>
@@ -97,24 +119,26 @@
       <div class="title">
         <div class="border"></div>
         <h3>贷款</h3>
-        <span>更多 ></span>
+        <router-link :to="{name: 'daikuan'}">
+          <span>更多 ></span>
+        </router-link>
         <div class="clear"></div>
       </div>
       <ul>
-        <li>
+        <li v-for="(item,index) in daikuan.slice(0,4)" :key="index" @click="goto_dk(item.pid)">
           <div class="top">
             <div class="top_left fl">
-              <img src="../assets/icon_4.png" alt>
+              <img :src="'http://api.duocai.jiaxunmedia.com/'+item.logo" alt>
             </div>
             <div class="top_right fl">
-              <h4>万2.5佣金</h4>
-              <p>一句slogan，一</p>
+              <h4>{{item.title}}</h4>
+              <p>{{item.slogan}}</p>
             </div>
             <div class="clear"></div>
           </div>
           <div class="middle">
             <div class="middle_left fl">
-              <p>3000-8000</p>
+              <p>{{item.quota_amount}}</p>
               <p>额度范围</p>
             </div>
             <div class="middle_right fl">
@@ -125,88 +149,7 @@
           </div>
           <div class="bottom">
             <span>22.5万人申请</span>
-            <button>立即开户</button>
-          </div>
-        </li>
-        <li>
-          <div class="top">
-            <div class="top_left fl">
-              <img src="../assets/icon_4.png" alt>
-            </div>
-            <div class="top_right fl">
-              <h4>万2.5佣金</h4>
-              <p>一句slogan，一</p>
-            </div>
-            <div class="clear"></div>
-          </div>
-          <div class="middle">
-            <div class="middle_left fl">
-              <p>3000-8000</p>
-              <p>额度范围</p>
-            </div>
-            <div class="middle_right fl">
-              <p>1-3个月</p>
-              <p>借款期限</p>
-            </div>
-            <div class="clear"></div>
-          </div>
-          <div class="bottom">
-            <span>22.5万人申请</span>
-            <button>立即开户</button>
-          </div>
-        </li>
-        <li>
-          <div class="top">
-            <div class="top_left fl">
-              <img src="../assets/icon_4.png" alt>
-            </div>
-            <div class="top_right fl">
-              <h4>万2.5佣金</h4>
-              <p>一句slogan，一</p>
-            </div>
-            <div class="clear"></div>
-          </div>
-          <div class="middle">
-            <div class="middle_left fl">
-              <p>3000-8000</p>
-              <p>额度范围</p>
-            </div>
-            <div class="middle_right fl">
-              <p>1-3个月</p>
-              <p>借款期限</p>
-            </div>
-            <div class="clear"></div>
-          </div>
-          <div class="bottom">
-            <span>22.5万人申请</span>
-            <button>立即开户</button>
-          </div>
-        </li>
-        <li>
-          <div class="top">
-            <div class="top_left fl">
-              <img src="../assets/icon_4.png" alt>
-            </div>
-            <div class="top_right fl">
-              <h4>万2.5佣金</h4>
-              <p>一句slogan，一</p>
-            </div>
-            <div class="clear"></div>
-          </div>
-          <div class="middle">
-            <div class="middle_left fl">
-              <p>3000-8000</p>
-              <p>额度范围</p>
-            </div>
-            <div class="middle_right fl">
-              <p>1-3个月</p>
-              <p>借款期限</p>
-            </div>
-            <div class="clear"></div>
-          </div>
-          <div class="bottom">
-            <span>22.5万人申请</span>
-            <button>立即开户</button>
+            <button @click="goto_kaihu(item.link)">立即开户</button>
           </div>
         </li>
         <div class="clear"></div>
@@ -221,69 +164,15 @@
         <div class="clear"></div>
       </div>
       <ul>
-        <li>
+        <li v-for="(item,index) in xinyongka.slice(0,4)" :key="index">
           <div class="left fl">
-            <img src="../assets/icon_5.png" alt>
+            <img :src="'http://api.duocai.jiaxunmedia.com/'+item.logo" alt>
           </div>
           <div class="right fl">
-            <h3>浦发银行我系列男性主题卡</h3>
-            <p>境外随身Wifi七天免费租用</p>
-            <p>新宿高岛屋百货公司每日5万</p>
-            <p>尊享中国大陆机场贵宾厅免费服务</p>
-            <div class="bottom">
-              <button>立即申请</button>
-              <p>
-                <span>22.5万</span>人申请
-              </p>
-            </div>
-          </div>
-          <div class="clear"></div>
-        </li>
-        <li>
-          <div class="left fl">
-            <img src="../assets/icon_5.png" alt>
-          </div>
-          <div class="right fl">
-            <h3>浦发银行我系列男性主题卡</h3>
-            <p>境外随身Wifi七天免费租用</p>
-            <p>新宿高岛屋百货公司每日5万</p>
-            <p>尊享中国大陆机场贵宾厅免费服务</p>
-            <div class="bottom">
-              <button>立即申请</button>
-              <p>
-                <span>22.5万</span>人申请
-              </p>
-            </div>
-          </div>
-          <div class="clear"></div>
-        </li>
-        <li>
-          <div class="left fl">
-            <img src="../assets/icon_5.png" alt>
-          </div>
-          <div class="right fl">
-            <h3>浦发银行我系列男性主题卡</h3>
-            <p>境外随身Wifi七天免费租用</p>
-            <p>新宿高岛屋百货公司每日5万</p>
-            <p>尊享中国大陆机场贵宾厅免费服务</p>
-            <div class="bottom">
-              <button>立即申请</button>
-              <p>
-                <span>22.5万</span>人申请
-              </p>
-            </div>
-          </div>
-          <div class="clear"></div>
-        </li>
-        <li>
-          <div class="left fl">
-            <img src="../assets/icon_5.png" alt>
-          </div>
-          <div class="right fl">
-            <h3>浦发银行我系列男性主题卡</h3>
-            <p>境外随身Wifi七天免费租用</p>
-            <p>新宿高岛屋百货公司每日5万</p>
-            <p>尊享中国大陆机场贵宾厅免费服务</p>
+            <h3>{{item.title}}</h3>
+            <p v-for="(item,index) in item.ys[0].slice(0,3)" :key="index">{{item}}</p>
+            <!-- <p>新宿高岛屋百货公司每日5万</p>
+            <p>尊享中国大陆机场贵宾厅免费服务</p>-->
             <div class="bottom">
               <button>立即申请</button>
               <p>
@@ -305,100 +194,40 @@
         <div class="clear"></div>
       </div>
       <ul>
-        <li>
+        <li v-for="(item,index) in p2p.slice(0,4)" :key="index">
           <div class="top">
             <div class="left fl">
-              <img src="../assets/icon_6.png" alt>
+              <img
+                :src="'http://api.duocai.jiaxunmedia.com/'+item.logo"
+                alt
+                style="margin:0 0.1rem;"
+              >
             </div>
-            <div class="right">
-              <h3 class="fl">恒信易贷 第3期首次出借活动</h3>
-              <p class="fl">
-                <span>借款期限长</span>
-                <span>借款期限长</span>
+            <div class="right fl">
+              <h3 class>{{item.title}}</h3>
+              <p class>
+                <span v-show="item.z_one" style="padding:0 0.1rem">{{item.z_one}}</span>
+                <span v-show="item.z_two" style="padding:0 0.1rem">{{item.z_two}}</span>
               </p>
+
               <div class="clear"></div>
-            </div>
-          </div>
-          <!-- <div class="div1"></div>
-          <div class="div2"></div>-->
-          <div class="bottom">
-            <div class="bottom_left fl">
-              <p>返利红包（元）</p>
-              <p>666</p>
-            </div>
-            <div class="bottom_middle fl">
-              <p>出借门槛（元）</p>
-              <p>666</p>
-            </div>
-            <div class="bottom_right fl">
-              <p>投资回报率</p>
-              <p>12.97%~27.8%</p>
             </div>
             <div class="clear"></div>
           </div>
-          <div class="clear"></div>
-        </li>
-        <li>
-          <div class="top">
-            <div class="left fl">
-              <img src="../assets/icon_6.png" alt>
-            </div>
-            <div class="right">
-              <h3 class="fl">恒信易贷 第3期首次出借活动</h3>
-              <p class="fl">
-                <span>借款期限长</span>
-                <span>借款期限长</span>
-              </p>
-              <div class="clear"></div>
-            </div>
-          </div>
           <!-- <div class="div1"></div>
           <div class="div2"></div>-->
           <div class="bottom">
             <div class="bottom_left fl">
               <p>返利红包（元）</p>
-              <p>666</p>
+              <p>{{item.gift}}</p>
             </div>
             <div class="bottom_middle fl">
-              <p>出借门槛（元）</p>
-              <p>666</p>
+              <p>出借门槛</p>
+              <p style="line-height:0.6rem">{{item.mk}}（元）</p>
             </div>
             <div class="bottom_right fl">
               <p>投资回报率</p>
-              <p>12.97%~27.8%</p>
-            </div>
-            <div class="clear"></div>
-          </div>
-          <div class="clear"></div>
-        </li>
-        <li>
-          <div class="top">
-            <div class="left fl">
-              <img src="../assets/icon_6.png" alt>
-            </div>
-            <div class="right">
-              <h3 class="fl">恒信易贷 第3期首次出借活动</h3>
-              <p class="fl">
-                <span>借款期限长</span>
-                <span>借款期限长</span>
-              </p>
-              <div class="clear"></div>
-            </div>
-          </div>
-          <!-- <div class="div1"></div>
-          <div class="div2"></div>-->
-          <div class="bottom">
-            <div class="bottom_left fl">
-              <p>返利红包（元）</p>
-              <p>666</p>
-            </div>
-            <div class="bottom_middle fl">
-              <p>出借门槛（元）</p>
-              <p>666</p>
-            </div>
-            <div class="bottom_right fl">
-              <p>投资回报率</p>
-              <p>12.97%~27.8%</p>
+              <p style="line-height:0.6rem">{{item.rate}}</p>
             </div>
             <div class="clear"></div>
           </div>
@@ -409,9 +238,12 @@
     </div>
     <!-- footer -->
     <footer>
-      <p class="p1">关于我们 | 免责声明</p>
-      <p class="p2">中亿·多财郑重提醒：市场有风险，投资需谨慎！</p>
-      <p class="p3">©2014-2019©湖北中亿嘉讯传媒有限公司 未经书面授权禁止复制或建立镜像</p>
+      <p class="p1">
+        中亿多财仅为信息发布平台，并不对第三方发布的金融服务信息的真实性及准确性负责，
+        且不提供金融投资服务。
+      </p>
+      <p>市场有风险，投资需谨慎！</p>
+      <p class="p3">2014-2019湖北中亿嘉讯传媒有限公司 未经书面授权禁止转载</p>
     </footer>
     <div class="zhezhao" v-if="showNav" @click="zhezhao"></div>
     <div class="nav" v-if="showNav">
@@ -419,32 +251,32 @@
         <img src="../assets/logo1.png" alt>
       </h2>
       <ul>
-        <li>
+        <li @click="shouye">
           <i class="iconfont icon-xiazai45"></i>
           <span>首页</span>
           <span>></span>
         </li>
-        <li @click="gupiao">
+        <li @click="goto_gupiao">
           <i class="iconfont icon-gupiao"></i>
           <span>股票</span>
           <span>></span>
         </li>
-        <li>
+        <li @click="goto_qihuo">
           <i class="iconfont icon-qihuo"></i>
           <span>期货</span>
           <span>></span>
         </li>
-        <li>
+        <li @click="goto_daikuan">
           <i class="iconfont icon-weibiaoti5"></i>
           <span>贷款</span>
           <span>></span>
         </li>
-        <li>
+        <li @click="goto_xinyongka">
           <i class="iconfont icon-xinyongqia1"></i>
           <span>信用卡</span>
           <span>></span>
         </li>
-        <li>
+        <li @click="goto_p2p">
           <i class="iconfont icon-hangqing"></i>
           <span>P2P</span>
           <span>></span>
@@ -457,8 +289,42 @@
 export default {
   data() {
     return {
-      showNav: false
+      showNav: false,
+      list: [],
+      gupiao: [],
+      qihuo: [],
+      daikuan: [],
+      xinyongka: [],
+      p2p: [],
+      list1: []
     };
+  },
+  created() {
+    this.$http
+      .get("http://duocai.jiaxunmedia.com/duocaiapi/", {
+        params: {}
+      })
+      .then(res => {
+        this.list = res.data.data;
+        console.log(this.list);
+        this.gupiao = this.list.gupiao;
+        this.qihuo = this.list.qihuo.slice(0, 2);
+        this.daikuan = this.list.jinxuandaikuan;
+        this.xinyongka = this.list.Recommended;
+        this.p2p = this.list.jinxuantuijian;
+      });
+    // 轮播图
+    this.$http
+      .get(
+        "http://api.duocai.jiaxunmedia.com/api/getBanner?swiper=2&class_id=0&client=0",
+        {
+          params: {}
+        }
+      )
+      .then(res => {
+        this.list1 = res.data.data;
+        // console.log(this.list1);
+      });
   },
   methods: {
     nav: function() {
@@ -467,8 +333,31 @@ export default {
     zhezhao() {
       this.showNav = false;
     },
-    gupiao() {
-      alert(11);
+    goto_dk(id) {
+      console.log(id);
+      this.$router.push({
+        name: "daikuan_detile",
+        params: { id: id }
+      });
+    },
+    shouye() {
+      this.$router.go(0);
+    },
+    goto_gupiao() {
+      this.$router.push({
+        name: "gupiao"
+      });
+    },
+    goto_qihuo() {},
+    goto_daikuan() {
+      this.$router.push({
+        name: "daikuan"
+      });
+    },
+    goto_xinyongka() {},
+    goto_p2p() {},
+    goto_kaihu(url) {
+      window.location.href = url;
     }
   }
 };
@@ -628,12 +517,20 @@ h1 {
   font-weight: 400;
   color: rgba(51, 51, 51, 1);
   line-height: 0.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 2rem;
 }
 .daikuan ul li .top_right p {
   font-size: 0.18rem;
   font-family: MicrosoftYaHei;
   font-weight: 400;
   color: rgba(128, 128, 128, 1);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 2rem;
 }
 .daikuan ul li .middle .middle_left {
   width: 50%;
@@ -715,6 +612,7 @@ h1 {
   border-radius: 10px;
   padding: 0.26rem 0 0 0.26rem;
   box-sizing: border-box;
+  margin-bottom: 0.2rem;
 }
 .xinyongka ul li img {
   width: 2.94rem;
@@ -733,17 +631,26 @@ h1 {
   font-weight: 400;
   color: rgba(51, 51, 51, 1);
   margin-bottom: 0.08rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 3.2rem;
 }
 .xinyongka ul li .right p {
   font-size: 0.16rem;
   font-family: MicrosoftYaHei;
   font-weight: 400;
   color: rgba(128, 128, 128, 1);
-  line-height: 0.35rem;
+  line-height: 0.32rem;
+  height: 0.32rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 3.2rem;
 }
 .xinyongka ul li button {
   width: 1.3rem;
-  height: 0.47rem;
+  height: 0.4rem;
   background: rgba(243, 84, 84, 1);
   border-radius: 24px;
   border: none;
@@ -843,7 +750,7 @@ h1 {
   font-family: MicrosoftYaHei;
   font-weight: 400;
   color: rgba(51, 51, 51, 1);
-  line-height: 0.7rem;
+  line-height: 0.5rem;
 }
 .p2p ul li .bottom_left > p:nth-child(2) {
   font-size: 0.42rem;
@@ -857,6 +764,8 @@ footer {
   /* height: 1rem; */
   background: rgba(51, 51, 51, 1);
   text-align: center;
+  padding: 0 0.2rem;
+  box-sizing: border-box;
 }
 footer p {
   font-size: 0.14rem;
@@ -864,9 +773,6 @@ footer p {
   font-weight: 400;
   color: rgba(179, 179, 179, 1);
   line-height: 0.4rem;
-}
-footer p:nth-child(1) {
-  color: rgba(230, 230, 230, 1);
 }
 /* 导航 */
 .zhezhao {
